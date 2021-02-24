@@ -57,7 +57,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 85
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -170,9 +170,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  speed: 0.2
-  mouseSensitivityX: 7
-  mouseSensitivityY: 10
+  speed: 10
+  mouseSensitivityX: 90
+  mouseSensitivityY: 90
+  minPitch: -90
+  maxPitch: 90
+  isGamePaused: 0
 --- !u!136 &7129347870412880044
 CapsuleCollider:
   m_ObjectHideFlags: 0
