@@ -170,7 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  speed: 10
+  maxWalkSpeed: 7
+  maxSprintSpeed: 10
+  maxCrouchSpeed: 3
   mouseSensitivityX: 90
   mouseSensitivityY: 90
   minPitch: -90

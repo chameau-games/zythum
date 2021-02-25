@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    public float speed;
+    public float maxWalkSpeed;
+    public float maxSprintSpeed;
+    public float maxCrouchSpeed;
     public float mouseSensitivityX;
     public float mouseSensitivityY;
     public float minPitch;
@@ -34,11 +36,29 @@ public class PlayerMovement : NetworkBehaviour
         if (!isLocalPlayer) return;
         if (isGamePaused) return;
 
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float speedH = Input.GetAxis("Horizontal");
+        float absSpeedH = Math.Abs(speedH);
+        float speedV = Input.GetAxis("Vertical");
+        float absSpeedV = Math.Abs(speedV);
+        
+        Vector3 movement = (speedH * _transform.right + speedV * _transform.forward).normalized;
 
-        Vector3 movement = h * _transform.right + v * _transform.forward;
-        _characterController.Move(movement.normalized * (speed * Time.deltaTime));
+        float speed;
+        switch (Input.GetAxisRaw("Speed"))
+        {
+            case -1:
+                speed = maxCrouchSpeed;
+                break;
+            case 1:
+                speed = maxSprintSpeed;
+                break;
+            default:
+                speed = maxWalkSpeed;
+                break;
+        }
+        speed *= Math.Max(absSpeedH, absSpeedV);
+
+        _characterController.Move(movement * (speed * Time.deltaTime));
 
         float x = Input.GetAxis("Mouse X");
         float y = Input.GetAxis("Mouse Y");
