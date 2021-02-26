@@ -10,49 +10,74 @@ public class SettingsMenu : MonoBehaviour
 
     public AudioMixer audiomixer;
 
-    Resolution[] resolutions;
+    public GameObject AudioMenu;
 
-    public Dropdown resolutionDropdown;
+    public GameObject VideoMenu;
+
+    public GameObject ControlsMenu;
+
+    public GameObject GameMenu;
     public void Start()
     {
-        resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
-        resolutionDropdown.ClearOptions();
-        
-        List<string> options = new List<string>();
-
-        int compteur = 0;
-        int currentResolutionIndex = 0;
-        foreach (Resolution resolution in resolutions)
-        {
-            string option = resolution.width + "x" + resolution.height;
-            options.Add(option);
-            if (resolution.width == Screen.width && resolution.height == Screen.height)
-            {
-                currentResolutionIndex = compteur;
-            }
-            compteur++;
-        }
-        
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
-
         Screen.fullScreen = true;
     }
     
+    // AUDIO
+    
+    public void OpeningAudioMenu()
+    {
+        AudioMenu.SetActive(true);
+    }
+    
+    public void ClosingAudioMenu()
+    {
+        AudioMenu.SetActive(false);
+    }
     public void SetVolume(float volume)
     {
         audiomixer.SetFloat("Volume", volume);
     }
-
+    
+    // VIDEO
+    
+    public void OpeningVideoMenu()
+    {
+        VideoMenu.SetActive(true);
+    }
+    
+    public void ClosingVideoMenu()
+    {
+        VideoMenu.SetActive(false);
+    }
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
     }
 
-    public void SetResolution(int resolutionIndex)
+    // CONTROLS
+
+    public void OpeningControlsMenu()
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        ControlsMenu.SetActive(true);
     }
+    
+    public void ClosingControlsMenu()
+    {
+        ControlsMenu.SetActive(false);
+    }
+    
+    // GAME
+
+    public void OpeningGameMenu()
+    {
+        GameMenu.SetActive(true);
+    }
+    
+    public void CloingGameMenu()
+    {
+        GameMenu.SetActive(false);
+    }
+    
+
+    
 }

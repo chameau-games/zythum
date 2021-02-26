@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &25606301
 RectTransform:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ RectTransform:
   m_Children:
   - {fileID: 1054508937}
   m_Father: {fileID: 1742049293}
-  m_RootOrder: 1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -173,7 +173,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audiomixer: {fileID: 24100000, guid: 7b100e327a8b94ec5bd9f2acb9cf3d0b, type: 2}
-  resolutionDropdown: {fileID: 0}
+  AudioMenu: {fileID: 25606300}
+  VideoMenu: {fileID: 304111699}
+  ControlsMenu: {fileID: 1489950786}
+  GameMenu: {fileID: 64566658}
 --- !u!114 &25606303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &64566659
 RectTransform:
   m_ObjectHideFlags: 0
@@ -243,7 +246,7 @@ RectTransform:
   m_Children:
   - {fileID: 990934137}
   m_Father: {fileID: 1742049293}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -263,7 +266,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audiomixer: {fileID: 24100000, guid: 7b100e327a8b94ec5bd9f2acb9cf3d0b, type: 2}
-  resolutionDropdown: {fileID: 0}
+  AudioMenu: {fileID: 0}
+  VideoMenu: {fileID: 0}
+  ControlsMenu: {fileID: 0}
+  GameMenu: {fileID: 0}
 --- !u!114 &64566661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &304111700
 RectTransform:
   m_ObjectHideFlags: 0
@@ -487,7 +493,7 @@ RectTransform:
   m_Children:
   - {fileID: 572669364}
   m_Father: {fileID: 1742049293}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -507,7 +513,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audiomixer: {fileID: 24100000, guid: 7b100e327a8b94ec5bd9f2acb9cf3d0b, type: 2}
-  resolutionDropdown: {fileID: 0}
+  AudioMenu: {fileID: 0}
+  VideoMenu: {fileID: 0}
+  ControlsMenu: {fileID: 0}
+  GameMenu: {fileID: 0}
 --- !u!114 &304111702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,7 +669,7 @@ RectTransform:
   m_Children:
   - {fileID: 611840648}
   m_Father: {fileID: 1742049293}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -709,7 +718,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 472968575}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1835202202}
+        m_MethodName: CloseSettingsWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &472968575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,7 +897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\tRETURN"
+  m_text: "\tRETOUR\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -986,7 +1006,7 @@ RectTransform:
   m_Children:
   - {fileID: 1253141504}
   m_Father: {fileID: 1742049293}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1035,7 +1055,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 654494301}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1742049294}
+        m_MethodName: OpeningControlsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &654494301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,7 +1136,7 @@ RectTransform:
   m_Children:
   - {fileID: 1554384242}
   m_Father: {fileID: 1835202206}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1154,7 +1185,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 741828901}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1835202202}
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &741828901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1372,7 +1414,7 @@ RectTransform:
   m_Children:
   - {fileID: 1108343682}
   m_Father: {fileID: 1835202206}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1421,7 +1463,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1103601821}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1835202202}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1103601821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1624,7 +1677,7 @@ RectTransform:
   m_Children:
   - {fileID: 1876561146}
   m_Father: {fileID: 1742049293}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1673,7 +1726,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1117845851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1742049294}
+        m_MethodName: OpeningVideoMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1117845851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1928,7 +1992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1489950787
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1942,7 +2006,7 @@ RectTransform:
   m_Children:
   - {fileID: 239922325}
   m_Father: {fileID: 1742049293}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1962,7 +2026,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audiomixer: {fileID: 24100000, guid: 7b100e327a8b94ec5bd9f2acb9cf3d0b, type: 2}
-  resolutionDropdown: {fileID: 0}
+  AudioMenu: {fileID: 0}
+  VideoMenu: {fileID: 0}
+  ControlsMenu: {fileID: 0}
+  GameMenu: {fileID: 0}
 --- !u!114 &1489950789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2032,7 +2099,7 @@ RectTransform:
   m_Children:
   - {fileID: 1660890441}
   m_Father: {fileID: 1742049293}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2081,7 +2148,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1495145197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1742049294}
+        m_MethodName: OpeningGameMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1495145197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2569,7 +2647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1742049293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2582,17 +2660,17 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1543407241}
-  - {fileID: 25606301}
   - {fileID: 2026247565}
-  - {fileID: 304111700}
   - {fileID: 1117845849}
-  - {fileID: 64566659}
   - {fileID: 1495145195}
-  - {fileID: 1489950787}
   - {fileID: 654494299}
   - {fileID: 472968573}
+  - {fileID: 25606301}
+  - {fileID: 304111700}
+  - {fileID: 1489950787}
+  - {fileID: 64566659}
   m_Father: {fileID: 1835202206}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2612,7 +2690,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audiomixer: {fileID: 24100000, guid: 7b100e327a8b94ec5bd9f2acb9cf3d0b, type: 2}
-  resolutionDropdown: {fileID: 0}
+  AudioMenu: {fileID: 25606300}
+  VideoMenu: {fileID: 304111699}
+  ControlsMenu: {fileID: 1489950786}
+  GameMenu: {fileID: 64566658}
 --- !u!114 &1742049295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2888,10 +2969,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1971045400}
-  - {fileID: 1742049293}
   - {fileID: 1103601819}
   - {fileID: 1909434767}
   - {fileID: 741828899}
+  - {fileID: 1742049293}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3065,7 +3146,7 @@ RectTransform:
   m_Children:
   - {fileID: 1829343061}
   m_Father: {fileID: 1835202206}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3114,7 +3195,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1909434769}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1835202202}
+        m_MethodName: SettingsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1909434769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3391,7 +3483,7 @@ RectTransform:
   m_Children:
   - {fileID: 1973218955}
   m_Father: {fileID: 1742049293}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3440,7 +3532,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2026247567}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1742049294}
+        m_MethodName: OpeningAudioMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2026247567
 MonoBehaviour:
   m_ObjectHideFlags: 0
