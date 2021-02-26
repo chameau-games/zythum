@@ -25,11 +25,11 @@ public class SettingsMenu : MonoBehaviour
         {
             string option = resolution.width + "x" + resolution.height;
             options.Add(option);
-            compteur++;
             if (resolution.width == Screen.width && resolution.height == Screen.height)
             {
                 currentResolutionIndex = compteur;
             }
+            compteur++;
         }
         
         resolutionDropdown.AddOptions(options);
@@ -46,5 +46,10 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullScreen;
     }
-    
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
 }
