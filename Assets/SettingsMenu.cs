@@ -20,7 +20,7 @@ public class SettingsMenu : MonoBehaviour
         List<string> options = new List<string>();
 
         int compteur = 0;
-        int currentResolutionIndex =0;
+        int currentResolutionIndex = 0;
         foreach (Resolution resolution in resolutions)
         {
             string option = resolution.width + "x" + resolution.height;
@@ -31,9 +31,10 @@ public class SettingsMenu : MonoBehaviour
                 currentResolutionIndex = compteur;
             }
         }
-        //resolutionDropdown.value = currentResolutionIndex;
-        //resolutionDropdown.RefreshShownValue();
+        
         resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
     }
     
     public void SetVolume(float volume)
