@@ -5,14 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+    public GameObject settingsWindow;
     public void StartGame()
     {
-        SceneManager.LoadScene("Undergound");
+        SceneManager.LoadScene("Underground");
     }
     
-    public void Settings()
+    public void SettingsMenu()
     {
-        
+        settingsWindow.SetActive(true);
+    }
+    
+    public void CloseSettingsWindow()
+    {
+        settingsWindow.SetActive(false);
     }
     
     public void QuitGame()
