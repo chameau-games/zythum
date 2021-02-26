@@ -31,8 +31,8 @@ public class SettingsMenu : MonoBehaviour
                 currentResolutionIndex = compteur;
             }
         }
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        //resolutionDropdown.value = currentResolutionIndex;
+        //resolutionDropdown.RefreshShownValue();
         resolutionDropdown.AddOptions(options);
     }
     
