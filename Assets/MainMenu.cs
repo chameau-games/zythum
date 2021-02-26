@@ -1,15 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
 
     public GameObject settingsWindow;
+    private ScenesManager _sceneManager;
+
+    private void Start()
+    {
+        _sceneManager = GameObject.Find("ScenesManager").GetComponent<ScenesManager>();
+    }
+
     public void StartGame()
     {
-        SceneManager.LoadScene("Underground");
+        _sceneManager.SwitchScene("Underground");
     }
     
     public void SettingsMenu()
