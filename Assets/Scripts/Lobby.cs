@@ -7,6 +7,10 @@ public class Lobby : MonoBehaviour
     private ScenesManager _sceneManager;
     private NetworkManager _networkManager;
 
+    public GameObject JoinMenu;
+
+    public GameObject HostMenu;
+
     public void Start()
     {
         _sceneManager = GameObject.Find("ScenesManager").GetComponent<ScenesManager>();
@@ -28,4 +32,8 @@ public class Lobby : MonoBehaviour
     {
         _sceneManager.SwitchScene("MainMenu");
     }
+    
+    // Menu Opening 
+
+    
 }
