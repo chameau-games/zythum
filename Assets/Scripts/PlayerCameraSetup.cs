@@ -4,45 +4,30 @@ using Cursor = UnityEngine.Cursor;
 
 public class PlayerCameraSetup : NetworkBehaviour
 {
-    private Camera _mainCamera;
+    private GameObject _mainCamera;
     private PlayerMovement _playerMovement;
-    
-    // Start is called before the first frame update
-    void Start()
+    private bool _isPlayerCameraEnabled = false;
+
+    public void Init()
     {
-        _mainCamera = Camera.main;
-        _playerMovement = GetComponentInParent<PlayerMovement>();
-        
-        if (isLocalPlayer)
-        {
-            if (_mainCamera != null)
-                _mainCamera.gameObject.SetActive(false);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            GetComponent<PlayerMovement>().enabled = false;
-            GetComponentInChildren<Camera>().enabled = false;
-            GetComponentInChildren<AudioListener>().enabled = false;
-        }
+        _mainCamera = FindObjectsOfType<Camera>()[0].gameObject;
+
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void Update()
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer && _isPlayerCameraEnabled)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                ChangeCursorState(false);
                 _playerMovement.isGamePaused = true;
             }
 
             if (Input.GetMouseButtonDown(0))
             {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                ChangeCursorState(true);
                 _playerMovement.isGamePaused = false;
             }
         }
@@ -52,8 +37,37 @@ public class PlayerCameraSetup : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (_mainCamera != null)
-                _mainCamera.gameObject.SetActive(true);
+            //Enable main camera and disable player camera
+            SwitchCamera(CameraType.Global);
+
+            _isPlayerCameraEnabled = false;
         }
+    }
+    
+    public void InitCamera()
+    {
+        //Disable main camera and enable player camera
+        SwitchCamera(CameraType.Player);
+
+        //Config the cursor
+        ChangeCursorState(true);
+        
+        _isPlayerCameraEnabled = true;
+    }
+
+    private enum CameraType { Player, Global }
+
+    private void SwitchCamera(CameraType cameraType)
+    {
+        bool activatePlayerCam = cameraType == CameraType.Player;
+        if (_mainCamera != null)
+            _mainCamera.SetActive(!activatePlayerCam);
+        gameObject.transform.Find("Camera").gameObject.SetActive(activatePlayerCam);
+    }
+
+    private void ChangeCursorState(bool locked)
+    {
+        Cursor.visible = !locked;
+        Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
     }
 }
