@@ -3,7 +3,7 @@
 public class MainMenu : MonoBehaviour
 {
 
-    public GameObject settingsWindow;
+    public GameObject optionsMenu;
     private ScenesManager _sceneManager;
 
     private void Start()
@@ -16,14 +16,14 @@ public class MainMenu : MonoBehaviour
         _sceneManager.SwitchScene("Lobby");
     }
     
-    public void SettingsMenu()
+    public void OpenOptionsMenu()
     {
-        settingsWindow.SetActive(true);
+        optionsMenu.SetActive(true);
     }
     
-    public void CloseSettingsWindow()
+    public void CloseOptionsMenu()
     {
-        settingsWindow.SetActive(false);
+        optionsMenu.SetActive(false);
     }
     
     public void QuitGame()
