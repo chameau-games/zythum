@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class SettingsMenu : MonoBehaviour
+public class OptionsMenu : MonoBehaviour
 {
 
     public AudioMixer audiomixer;
@@ -19,20 +19,21 @@ public class SettingsMenu : MonoBehaviour
     public GameObject GameMenu;
     public void Start()
     {
-        Screen.fullScreen = true;
+        
     }
     
     // AUDIO
     
-    public void OpeningAudioMenu()
+    public void OpenAudioMenu()
     {
         AudioMenu.SetActive(true);
     }
     
-    public void ClosingAudioMenu()
+    public void CloseAudioMenu()
     {
         AudioMenu.SetActive(false);
     }
+    
     public void SetVolume(float volume)
     {
         audiomixer.SetFloat("Volume", volume);
@@ -40,12 +41,12 @@ public class SettingsMenu : MonoBehaviour
     
     // VIDEO
     
-    public void OpeningVideoMenu()
+    public void OpenVideoMenu()
     {
         VideoMenu.SetActive(true);
     }
     
-    public void ClosingVideoMenu()
+    public void CloseVideoMenu()
     {
         VideoMenu.SetActive(false);
     }
@@ -56,24 +57,24 @@ public class SettingsMenu : MonoBehaviour
 
     // CONTROLS
 
-    public void OpeningControlsMenu()
+    public void OpenControlsMenu()
     {
         ControlsMenu.SetActive(true);
     }
     
-    public void ClosingControlsMenu()
+    public void CloseControlsMenu()
     {
         ControlsMenu.SetActive(false);
     }
     
     // GAME
 
-    public void OpeningGameMenu()
+    public void OpenGameMenu()
     {
         GameMenu.SetActive(true);
     }
     
-    public void CloingGameMenu()
+    public void CloseGameMenu()
     {
         GameMenu.SetActive(false);
     }
