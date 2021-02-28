@@ -10,7 +10,7 @@ public class PlayerManager : NetworkBehaviour
         _playerCameraSetup = GetComponent<PlayerCameraSetup>();
         _playerMovement = GetComponent<PlayerMovement>();
     }
-    
+
     public void CheckIfLocalAndActivate()
     {
         if (isLocalPlayer)
@@ -26,6 +26,5 @@ public class PlayerManager : NetworkBehaviour
             _playerCameraSetup.InitCamera();
         }
     }
-
- 
+    
 }

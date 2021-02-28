@@ -10,8 +10,7 @@ public class PlayerCameraSetup : NetworkBehaviour
 
     public void Init()
     {
-        _mainCamera = FindObjectsOfType<Camera>()[0].gameObject;
-
+        _mainCamera = GameObject.Find("Main Camera");
         _playerMovement = GetComponent<PlayerMovement>();
     }
 
@@ -32,7 +31,7 @@ public class PlayerCameraSetup : NetworkBehaviour
             }
         }
     }
-    
+
     private void OnDisable()
     {
         if (isLocalPlayer)
@@ -43,7 +42,7 @@ public class PlayerCameraSetup : NetworkBehaviour
             _isPlayerCameraEnabled = false;
         }
     }
-    
+
     public void InitCamera()
     {
         //Disable main camera and enable player camera
@@ -51,21 +50,24 @@ public class PlayerCameraSetup : NetworkBehaviour
 
         //Config the cursor
         ChangeCursorState(true);
-        
+
         _isPlayerCameraEnabled = true;
     }
 
-    private enum CameraType { Player, Global }
+    private enum CameraType
+    {
+        Player,
+        Global
+    }
 
     private void SwitchCamera(CameraType cameraType)
     {
         bool activatePlayerCam = cameraType == CameraType.Player;
-        if (_mainCamera != null)
-            _mainCamera.SetActive(!activatePlayerCam);
+        if (_mainCamera != null) _mainCamera.SetActive(!activatePlayerCam);
         gameObject.transform.Find("Camera").gameObject.SetActive(activatePlayerCam);
     }
 
-    private void ChangeCursorState(bool locked)
+    public void ChangeCursorState(bool locked)
     {
         Cursor.visible = !locked;
         Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;

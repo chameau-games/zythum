@@ -59,11 +59,11 @@ public class PlayerMovement : NetworkBehaviour
         float x = Input.GetAxis("Mouse X");
         float y = Input.GetAxis("Mouse Y");
 
-        Vector3 yaw = new Vector3(0, x, 0);
-        transform.Rotate(yaw * (mouseSensitivityX * Time.deltaTime * 10));
+        Vector3 yaw = new Vector3(0f, x, 0f);
+        transform.Rotate(yaw * (mouseSensitivityX * Time.deltaTime * 10f));
 
-        _pitchAngle += -y * mouseSensitivityY * Time.deltaTime * 10;
+        _pitchAngle += -y * mouseSensitivityY * Time.deltaTime * 10f;
         _pitchAngle = Mathf.Clamp(_pitchAngle, minPitch, maxPitch);
-        _playerCamera.transform.localEulerAngles = new Vector3(_pitchAngle, 0, 0);
+        _playerCamera.transform.localEulerAngles = new Vector3(_pitchAngle, 0f, 0f);
     }
 }
