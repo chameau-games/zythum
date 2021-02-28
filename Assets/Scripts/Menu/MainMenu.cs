@@ -11,22 +11,18 @@ public class MainMenu : MonoBehaviour
         _sceneManager = GameObject.Find("ScenesManager").GetComponent<ScenesManager>();
     }
 
-    public void StartGame()
+    public void OnClickPlayButton()
     {
-        _sceneManager.SwitchScene("Underground");
+        _sceneManager.SwitchScene("Lobby");
     }
     
-    public void OpenOptionsMenu()
+    public void OnClickOptionButton()
     {
+        gameObject.SetActive(false);
         optionsMenu.SetActive(true);
     }
-    
-    public void CloseOptionsMenu()
-    {
-        optionsMenu.SetActive(false);
-    }
-    
-    public void QuitGame()
+
+    public void OnClickQuitButton()
     {
         Application.Quit();
     }

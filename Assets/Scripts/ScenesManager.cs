@@ -1,21 +1,26 @@
-﻿using Mirror;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScenesManager : NetworkBehaviour
+public class ScenesManager : MonoBehaviour
 {
     private string _current;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _current = "MainMenu";
         SceneManager.LoadScene(_current, LoadSceneMode.Additive);
     }
 
-    public void SwitchScene(string name)
+    public void SwitchScene(string newSceneName)
     {
-        SceneManager.LoadScene(name, LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync(_current);
-        _current = name;
+        _current = newSceneName;
+        SceneManager.LoadScene(_current, LoadSceneMode.Additive);
+    }
+
+    public void Move(GameObject go, string sceneName)
+    {
+        SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneByName(sceneName));
     }
     
 }
