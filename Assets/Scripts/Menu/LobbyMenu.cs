@@ -24,6 +24,8 @@ public class LobbyMenu : MonoBehaviour
 
     public void JoinGame()
     {
+        _networkManager.StopAllConnections();
+
         _networkManager.StartClient();
         hostSection.SetActive(false);
         joinGameButton.SetActive(false);
@@ -33,6 +35,8 @@ public class LobbyMenu : MonoBehaviour
 
     public void HostGame()
     {
+        _networkManager.StopAllConnections();
+
         _networkManager.StartHost(); 
         hostGameButton.SetActive(false);
         startGameButton.SetActive(true);
@@ -62,10 +66,9 @@ public class LobbyMenu : MonoBehaviour
         }
         else
         {
+            _networkManager.StopAllConnections();
             if (joinSection.activeSelf)
             {
-                _networkManager.StopClient();
-                
                 hostSection.SetActive(true);
                 joinGameButton.SetActive(true);
                 addressInputText.SetActive(true);
@@ -73,8 +76,6 @@ public class LobbyMenu : MonoBehaviour
             }
             else
             {
-                _networkManager.StopHost();
-                
                 hostGameButton.SetActive(true);
                 startGameButton.SetActive(false);
                 joinSection.SetActive(true);
@@ -98,5 +99,5 @@ public class LobbyMenu : MonoBehaviour
     {
         _networkManager.networkAddress = addressInputText.GetComponent<TMP_InputField>().text.Trim();
     }
-    
+
 }

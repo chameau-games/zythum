@@ -53,8 +53,20 @@ public class CustomNetworkManager : NetworkManager
     public override void OnClientDisconnect(NetworkConnection conn)
     {
         base.OnClientDisconnect(conn);
-        _sceneManager.SwitchScene("MainMenu");
+        _sceneManager.SwitchScene("Lobby");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void StopAllConnections()
+    {
+        if (mode == NetworkManagerMode.Host)
+        {
+            StopHost();
+        }
+        else if(mode == NetworkManagerMode.ClientOnly)
+        {
+            StopClient();
+        }
     }
 }
