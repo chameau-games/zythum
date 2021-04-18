@@ -11,33 +11,50 @@ public class PlayerMovement : NetworkBehaviour
     public float mouseSensitivityY;
     public float minPitch;
     public float maxPitch;
+    public float jumpForce;
 
     private float _pitchAngle;
-    
-    [HideInInspector]
-    public bool isGamePaused = false;
-    
-    private CharacterController _characterController;
-    private Transform _transform;
-    private GameObject _playerCamera;
 
-    public void Init()
+    [HideInInspector] public bool isGamePaused = false;
+
+    public new Transform transform;
+    public GameObject playerCamera;
+    public new Rigidbody rigidbody;
+
+    private bool _isGrounded = true;
+
+    private void OnCollisionEnter(Collision other)
     {
-        _characterController = GetComponent<CharacterController>();
-        _transform = transform;
-        _playerCamera = _transform.Find("Camera").gameObject;
+        foreach (ContactPoint contact in other.contacts)
+        {
+            Debug.Log(contact.otherCollider.gameObject.name);
+            if (contact.otherCollider.gameObject.layer == 8)
+                _isGrounded = true;
+        }
+    }
+    
+    private void Start()
+    {
+        foreach (GameObject o in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (o != gameObject)
+            {
+                foreach (CapsuleCollider c1 in GetComponents<CapsuleCollider>())
+                {
+                    foreach (CapsuleCollider c2 in o.GetComponents<CapsuleCollider>())
+                        Physics.IgnoreCollision(c1, c2);
+                }
+            }
+        }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!isLocalPlayer || isGamePaused) return;
 
+        //MOVEMENTS JOUEUR
         float speedH = Input.GetAxis("Horizontal");
-        float absSpeedH = Math.Abs(speedH);
         float speedV = Input.GetAxis("Vertical");
-        float absSpeedV = Math.Abs(speedV);
-        
-        Vector3 movement = (speedH * _transform.right + speedV * _transform.forward).normalized;
 
         float speed;
         switch (Input.GetAxisRaw("Speed"))
@@ -52,10 +69,23 @@ public class PlayerMovement : NetworkBehaviour
                 speed = maxWalkSpeed;
                 break;
         }
-        speed *= Math.Max(absSpeedH, absSpeedV);
 
-        _characterController.Move(movement * (speed * Time.deltaTime));
+        Vector3 movement = speedH * transform.right + speedV * transform.forward;
+        if (movement.magnitude > 1)
+            movement /= movement.magnitude;
 
+        movement *= (speed * Time.deltaTime);
+        movement.y = rigidbody.velocity.y;
+
+        rigidbody.velocity = movement;
+
+        if (_isGrounded && Input.GetAxisRaw("Jump") > .9)
+        {
+            _isGrounded = false;
+            rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+        }
+
+        //MOUVEMENTS CAMERA
         float x = Input.GetAxis("Mouse X");
         float y = Input.GetAxis("Mouse Y");
 
@@ -64,6 +94,6 @@ public class PlayerMovement : NetworkBehaviour
 
         _pitchAngle += -y * mouseSensitivityY * Time.deltaTime * 10f;
         _pitchAngle = Mathf.Clamp(_pitchAngle, minPitch, maxPitch);
-        _playerCamera.transform.localEulerAngles = new Vector3(_pitchAngle, 0f, 0f);
+        playerCamera.transform.localEulerAngles = new Vector3(_pitchAngle, 0f, 0f);
     }
 }
