@@ -11,12 +11,16 @@ public class PlayerMovement : NetworkBehaviour
     public float mouseSensitivityY;
     public float minPitch;
     public float maxPitch;
+    public float gravity;
+    public float jump_height;
+    
 
     private float _pitchAngle;
     
     [HideInInspector]
     public bool isGamePaused = false;
-    
+
+    private Animator _animator;
     private CharacterController _characterController;
     private Transform _transform;
     private GameObject _playerCamera;
@@ -26,10 +30,12 @@ public class PlayerMovement : NetworkBehaviour
         _characterController = GetComponent<CharacterController>();
         _transform = transform;
         _playerCamera = _transform.Find("Camera").gameObject;
+        _animator=GetComponent<Animator>();
     }
 
     private void Update()
     {
+        //mouvement terrestre
         if (!isLocalPlayer || isGamePaused) return;
 
         float speedH = Input.GetAxis("Horizontal");
@@ -44,18 +50,35 @@ public class PlayerMovement : NetworkBehaviour
         {
             case -1:
                 speed = maxCrouchSpeed;
+                _animator.SetBool("iscrouching",true);
                 break;
             case 1:
                 speed = maxSprintSpeed;
+                _animator.SetBool("isrunning",true);
                 break;
             default:
                 speed = maxWalkSpeed;
+                _animator.SetBool("iswalking",true);
                 break;
         }
         speed *= Math.Max(absSpeedH, absSpeedV);
+        
+        //jump
+        if (!(_characterController.isGrounded)&& movement.y<0)
+        {
+            movement.y = -0.2f;
+        }
+        if (Input.GetButtonDown("Jump") && _characterController.isGrounded)
+        {
+            _animator.SetBool("isjumping",true);
+            movement.y = Mathf.Sqrt(jump_height * -2f * gravity);
+        }
 
+        //methode move
         _characterController.Move(movement * (speed * Time.deltaTime));
-
+        
+        
+        //camera
         float x = Input.GetAxis("Mouse X");
         float y = Input.GetAxis("Mouse Y");
 

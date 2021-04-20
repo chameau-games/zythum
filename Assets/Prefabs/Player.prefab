@@ -267,6 +267,8 @@ MonoBehaviour:
   mouseSensitivityY: 90
   minPitch: -90
   maxPitch: 90
+  gravity: -9.81
+  jump_height: 50
   isGamePaused: 0
 --- !u!1 &5084145706120035411
 GameObject:
