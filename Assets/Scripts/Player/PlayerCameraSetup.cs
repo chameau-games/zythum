@@ -1,18 +1,13 @@
-﻿using Mirror;
+﻿using System;
+using Mirror;
 using UnityEngine;
 using Cursor = UnityEngine.Cursor;
 
 public class PlayerCameraSetup : NetworkBehaviour
 {
     private GameObject _mainCamera;
-    private PlayerMovement _playerMovement;
+    public PlayerMovement playerMovement;
     private bool _isPlayerCameraEnabled = false;
-
-    public void Init()
-    {
-        _mainCamera = GameObject.Find("Main Camera");
-        _playerMovement = GetComponent<PlayerMovement>();
-    }
 
     private void Update()
     {
@@ -21,15 +16,20 @@ public class PlayerCameraSetup : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 ChangeCursorState(false);
-                _playerMovement.isGamePaused = true;
+                playerMovement.isGamePaused = true;
             }
 
             if (Input.GetMouseButtonDown(0))
             {
                 ChangeCursorState(true);
-                _playerMovement.isGamePaused = false;
+                playerMovement.isGamePaused = false;
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        _mainCamera = Camera.main.gameObject;
     }
 
     private void OnDisable()
