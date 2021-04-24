@@ -34,14 +34,12 @@ namespace Player
                     _isGrounded = true;
             }
         }
-        
-        private void OnEnable()
+
+        public override void OnStartClient()
         {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            base.OnStartClient();
             foreach (GameObject o in GameObject.FindGameObjectsWithTag("Player"))
             {
-                Debug.Log("heyyy");
                 if (o != gameObject)
                 {
                     foreach (CapsuleCollider c1 in GetComponents<CapsuleCollider>())
@@ -51,6 +49,12 @@ namespace Player
                     }
                 }
             }
+        }
+
+        private void OnEnable()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void Update()
