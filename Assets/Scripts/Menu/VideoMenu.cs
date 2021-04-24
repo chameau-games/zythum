@@ -10,17 +10,17 @@ public class VideoMenu : MonoBehaviour
 
     public TMP_Dropdown resolutionDropdown;
     
-    Resolution[] resolutions;
+    Resolution[] _resolutions;
 
-    public void Start()
+    public void Awake()
     {
-        resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height}).Distinct().ToArray();
+        _resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height}).Distinct().ToArray();
         resolutionDropdown.ClearOptions();
 
         List<string> resolutionsOptions = new List<string>();
         int index = 0;
         int compteur = 0;
-        foreach (var resolution in resolutions)
+        foreach (var resolution in _resolutions)
         {
             string option = resolution.width + "x" + resolution.height;
             resolutionsOptions.Add(option);
@@ -30,7 +30,7 @@ public class VideoMenu : MonoBehaviour
         }
         
         resolutionDropdown.AddOptions(resolutionsOptions);
-        resolutionDropdown.value = index;
+        SetResolution(index);
         resolutionDropdown.RefreshShownValue();
     }
     // Return to options menu
@@ -43,7 +43,7 @@ public class VideoMenu : MonoBehaviour
 
     public void SetResolution(int index)
     {
-        Resolution resolution = resolutions[index];
+        Resolution resolution = _resolutions[index];
         Screen.SetResolution(resolution.width,resolution.height,Screen.fullScreen);
     }
 
