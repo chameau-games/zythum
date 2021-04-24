@@ -63,27 +63,18 @@ namespace Multi
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
+            else
+            {
+                _clientGameObject = NetworkClient.connection.identity.gameObject;
+                _clientGameObject.transform.Find("Camera").gameObject.SetActive(true);
+                _clientGameObject.GetComponent<PlayerMovement>().enabled = true;
+            }
         }
 
         public override void OnStopClient()
         {
             base.OnStopClient();
             SceneManager.LoadScene("Lobby");
-        }
-        
-        
-
-        public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
-        {
-            base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
-            if (newSceneName == "Underground")
-            {
-                Debug.Log(NetworkClient.connection.identity.gameObject);
-                Debug.Log(ClientScene.localPlayer.gameObject);
-                _clientGameObject = ClientScene.localPlayer.gameObject;
-                _clientGameObject.transform.Find("Camera").gameObject.SetActive(true);
-                _clientGameObject.GetComponent<PlayerMovement>().enabled = true;
-            }
         }
     }
 }
