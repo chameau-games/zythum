@@ -41,6 +41,7 @@ namespace Player
             Cursor.lockState = CursorLockMode.Locked;
             foreach (GameObject o in GameObject.FindGameObjectsWithTag("Player"))
             {
+                Debug.Log("heyyy");
                 if (o != gameObject)
                 {
                     foreach (CapsuleCollider c1 in GetComponents<CapsuleCollider>())
