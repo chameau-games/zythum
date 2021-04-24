@@ -163,6 +163,7 @@ public class VivoxManager : MonoBehaviour
                     break;
                 case ConnectionState.Disconnecting:
                     Debug.Log($"{source.Channel.Name} disconnecting");
+                    Bind_Channel_Callback_Listeners(false, channelSession);
                     break;
             }
         }
