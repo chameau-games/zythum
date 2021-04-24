@@ -1,30 +1,22 @@
 ﻿using Mirror;
 
-public class PlayerManager : NetworkBehaviour
+namespace Player
 {
-    private PlayerCameraSetup _playerCameraSetup;
-    private PlayerMovement _playerMovement;
-
-    private void Init()
+    public class PlayerManager : NetworkBehaviour
     {
-        _playerCameraSetup = GetComponent<PlayerCameraSetup>();
-        _playerMovement = GetComponent<PlayerMovement>();
-    }
-
-    public void CheckIfLocalAndActivate()
-    {
-        if (isLocalPlayer)
-        {
-            Init();
-            
-            _playerCameraSetup.Init();
-            _playerMovement.Init();
-            
-            _playerCameraSetup.enabled = true;
-            _playerMovement.enabled = true;
-            
-            _playerCameraSetup.InitCamera();
-        }
-    }
+        public PlayerCameraSetup playerCameraSetup;
+        public PlayerMovement playerMovement;
     
+        public void CheckIfLocalAndActivate()
+        {
+            if (isLocalPlayer)
+            {
+                playerCameraSetup.enabled = true;
+                playerMovement.enabled = true;
+            
+                playerCameraSetup.InitCamera();
+            }
+        }
+    
+    }
 }
