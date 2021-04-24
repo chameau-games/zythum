@@ -1,29 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+namespace Menu
 {
-
-    public GameObject optionsMenu;
-    private ScenesManager _sceneManager;
-
-    private void Start()
+    public class MainMenu : MonoBehaviour
     {
-        _sceneManager = GameObject.Find("ScenesManager").GetComponent<ScenesManager>();
-    }
 
-    public void OnClickPlayButton()
-    {
-        _sceneManager.SwitchScene("Lobby");
-    }
+        public GameObject optionsMenu;
+
+        public void OnClickPlayButton()
+        {
+            SceneManager.LoadScene("Lobby");
+        }
     
-    public void OnClickOptionButton()
-    {
-        gameObject.SetActive(false);
-        optionsMenu.SetActive(true);
-    }
+        public void OnClickOptionButton()
+        {
+            gameObject.SetActive(false);
+            optionsMenu.SetActive(true);
+        }
 
-    public void OnClickQuitButton()
-    {
-        Application.Quit();
+        public void OnClickQuitButton()
+        {
+            Application.Quit();
+        }
     }
 }
