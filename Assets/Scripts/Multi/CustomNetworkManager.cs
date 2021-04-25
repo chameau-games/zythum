@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Policy;
 using Menu;
 using Mirror;
 using Player;
@@ -28,16 +29,21 @@ namespace Multi
             {
                 _hostConn = conn;
                 _host = conn.identity.gameObject.GetComponent<PlayerManager>();
+                
+                //VIVOX
+                _host.channelName = SystemInfo.deviceUniqueIdentifier;
             }
             else if (numPlayers == 2)
             {
                 _hostedConn = conn;
                 _hosted = conn.identity.gameObject.GetComponent<PlayerManager>();
+                _hosted.channelName = _host.channelName;
 
                 _host.TargetEnableStartButton(_hostConn);
                 _hosted.TargetSetWaitMessage(_hostedConn, "En attente du lancement de la partie...");
             }
         }
+        
 
         public override void OnServerDisconnect(NetworkConnection conn)
         {
@@ -72,6 +78,13 @@ namespace Multi
         {
             base.OnStopClient();
             SceneManager.LoadScene("Lobby");
+        }
+
+        public override void OnClientConnect(NetworkConnection conn)
+        {
+            base.OnClientConnect(conn);
+            var vivox = GameObject.Find("VivoxManager").GetComponent<VivoxManager>();
+            vivox.Login();
         }
     }
 }

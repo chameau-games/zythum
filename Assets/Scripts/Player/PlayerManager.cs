@@ -10,6 +10,9 @@ namespace Player
     {
         private GameObject _startGameButton;
         private TMP_Text _waitMessage;
+        
+        [SyncVar]
+        public string channelName;
 
         public void Activate()
         {

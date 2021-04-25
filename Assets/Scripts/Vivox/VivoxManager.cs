@@ -3,24 +3,26 @@ using System;
 using VivoxUnity;
 using UnityEngine;
 using System.ComponentModel;
+using Mirror;
+using Player;
 
 public class VivoxManager : MonoBehaviour
 {
     private VivoxUnity.Client client;
-    private string _userName = SystemInfo.deviceUniqueIdentifier;
+    private string _userName;
     private Uri server = new Uri("https://mt1s.www.vivox.com/api2");
     private string issuer = "chamea7761-zy80-dev";
     private string domain = "mt1s.vivox.com";
     private string key = "kelp356";
-    private TimeSpan timespan = new TimeSpan(90);
+    private TimeSpan timespan = TimeSpan.FromSeconds(90);
     
 
     private ILoginSession loginSession;
     private IChannelSession channelSession;
 
-
     private void Awake()
     {
+        _userName = SystemInfo.deviceUniqueIdentifier;
         client = new Client();
         client.Uninitialize();
         client.Initialize();
@@ -77,6 +79,8 @@ public class VivoxManager : MonoBehaviour
                 Bind_Login_Callback_Listeners(false,loginSession);
                 Debug.Log(e.Message);
             }
+            JoinChannel(ClientScene.localPlayer.GetComponent<PlayerManager>().channelName);
+
         });
     }
     
@@ -117,13 +121,13 @@ public class VivoxManager : MonoBehaviour
     
     #region Join Channel methods
 
-    public void JoinChannel(string channelName, bool switchTransmission)
+    public void JoinChannel(string channelName)
     {
         ChannelId channelId = new ChannelId(issuer,channelName,domain);
         channelSession = loginSession.GetChannelSession(channelId);
         Bind_Channel_Callback_Listeners(true, channelSession);
         channelSession.PropertyChanged += On_Audio_State_Changed;
-        channelSession.BeginConnect(true, false, switchTransmission, channelSession.GetConnectToken(key, timespan), ar =>
+        channelSession.BeginConnect(true, false, true, channelSession.GetConnectToken(key, timespan), ar =>
         {
             try
             {
