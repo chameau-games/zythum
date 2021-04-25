@@ -21,10 +21,15 @@ namespace Player
 
         public new Transform transform;
         public GameObject playerCamera;
-        public new Rigidbody rigidbody;
+        private Rigidbody _rigidbody;
 
         private bool _isGrounded = true;
         private bool _canControl = true;
+
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+        }
 
         private void OnCollisionEnter(Collision other)
         {
@@ -104,14 +109,14 @@ namespace Player
                 movement /= movement.magnitude;
 
             movement *= (speed * Time.deltaTime);
-            movement.y = rigidbody.velocity.y;
+            movement.y = _rigidbody.velocity.y;
 
-            rigidbody.velocity = movement;
+            _rigidbody.velocity = movement;
 
             if (_isGrounded && Input.GetAxisRaw("Jump") > .9)
             {
                 _isGrounded = false;
-                rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                _rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             }
 
             //MOUVEMENTS CAMERA

@@ -1,207 +1,219 @@
-﻿
-using System;
-using VivoxUnity;
-using UnityEngine;
+﻿using System;
 using System.ComponentModel;
 using Mirror;
 using Player;
+using UnityEngine;
+using VivoxUnity;
 
-public class VivoxManager : MonoBehaviour
+namespace Vivox
 {
-    private VivoxUnity.Client client;
-    private string _userName;
-    private Uri server = new Uri("https://mt1s.www.vivox.com/api2");
-    private string issuer = "chamea7761-zy80-dev";
-    private string domain = "mt1s.vivox.com";
-    private string key = "kelp356";
-    private TimeSpan timespan = TimeSpan.FromSeconds(90);
-    
-
-    private ILoginSession loginSession;
-    private IChannelSession channelSession;
-
-    private void Awake()
+    public class VivoxManager : MonoBehaviour
     {
-        _userName = SystemInfo.deviceUniqueIdentifier;
-        client = new Client();
-        client.Uninitialize();
-        client.Initialize();
-        DontDestroyOnLoad(this);
-    }
+        private Client _client;
+        private string _userName;
+        private Uri server = new Uri("https://mt1s.www.vivox.com/api2");
+        private string issuer = "chamea7761-zy80-dev";
+        private string domain = "mt1s.vivox.com";
+        private string key = "kelp356";
+        private TimeSpan timespan = TimeSpan.FromSeconds(90);
 
-    private void OnApplicationQuit()
-    {
-        client.Uninitialize();
-    }
-    
+        private ILoginSession _loginSession;
+        private IChannelSession _channelSession;
 
-    public void Bind_Login_Callback_Listeners(bool bind, ILoginSession loginSesh)
-    {
-        if (bind)
+        private void Awake()
         {
-            loginSesh.PropertyChanged += Login_status;
-        }
-        else
-        {
-            loginSesh.PropertyChanged -= Login_status;
-        }
-    }
-
-    public void Bind_Channel_Callback_Listeners(bool bind, IChannelSession channelSesh)
-    {
-        if (bind)
-        {
-            channelSesh.PropertyChanged += On_Channel_Status_Changed;
-        }
-        else
-        {
-            channelSesh.PropertyChanged -= On_Channel_Status_Changed;
-        }
-    }
-    
-    
-    
-    #region Loggin methods 
-    
-    public void Login()
-    {
-        AccountId accountId = new AccountId(issuer,_userName,domain);
-        loginSession = client.GetLoginSession(accountId);
-        Bind_Login_Callback_Listeners(true,loginSession);
-        loginSession.BeginLogin(server, loginSession.GetLoginToken(key, timespan), ar =>
-        {
-            try
+            if (FindObjectsOfType(GetType()).Length > 1)  //POUR EVITER LES DUPLICATE
             {
-                loginSession.EndLogin(ar);
+                Destroy(gameObject);
             }
-            catch (Exception e)
-            {
-                Bind_Login_Callback_Listeners(false,loginSession);
-                Debug.Log(e.Message);
-            }
-            JoinChannel(NetworkClient.connection.identity.GetComponent<PlayerManager>().channelName);
+            DontDestroyOnLoad(this);
+            _userName = SystemInfo.deviceUniqueIdentifier;
+            _client = new Client();
+            _client.Uninitialize();
+            _client.Initialize();
+        }
 
-        });
-    }
+        private void OnApplicationQuit()
+        {
+            _client.Uninitialize();
+        }
     
 
-    public void Logout()
-    {
-        loginSession.Logout();
-        Bind_Login_Callback_Listeners(false,loginSession);
-    }
-
-    public void Login_status(object sender, PropertyChangedEventArgs loginArgs)
-    {
-        ILoginSession source = (ILoginSession) sender;
-
-        if ("State" == loginArgs.PropertyName)
+        public void Bind_Login_Callback_Listeners(bool bind, ILoginSession loginSesh)
         {
-            switch (source.State)
+            if (bind)
             {
-                case LoginState.LoggedIn:
-                    Debug.Log("Logged in");
-                    break;
-                case LoginState.LoggingIn:
-                    Debug.Log("Logging in");
-                    break;
-                case LoginState.LoggedOut:
-                    Debug.Log("Logged out");
-                    break;
-                case LoginState.LoggingOut:
-                    Debug.Log("Logging out");
-                    break;
+                loginSesh.PropertyChanged += Login_status;
+            }
+            else
+            {
+                loginSesh.PropertyChanged -= Login_status;
             }
         }
-    }
-    
-    
-    #endregion
-    
-    
-    #region Join Channel methods
 
-    public void JoinChannel(string channelName)
-    {
-        ChannelId channelId = new ChannelId(issuer,channelName,domain);
-        channelSession = loginSession.GetChannelSession(channelId);
-        Bind_Channel_Callback_Listeners(true, channelSession);
-        channelSession.PropertyChanged += On_Audio_State_Changed;
-        channelSession.BeginConnect(true, false, true, channelSession.GetConnectToken(key, timespan), ar =>
+        public void Bind_Channel_Callback_Listeners(bool bind, IChannelSession channelSesh)
         {
-            try
+            if (bind)
             {
-                channelSession.EndConnect(ar);
+                channelSesh.PropertyChanged += On_Channel_Status_Changed;
             }
-            catch (Exception e)
+            else
             {
-                Bind_Channel_Callback_Listeners(false,channelSession);
-                channelSession.PropertyChanged -= On_Audio_State_Changed;
-                Debug.Log(e.Message);
-            }
-        });
-    }
-
-    public void LeaveChannel(IChannelSession channelToDisconnect)
-    {
-        ChannelId channelId = channelToDisconnect.Channel;
-        channelToDisconnect.Disconnect();
-        loginSession.DeleteChannelSession(channelId);
-    }
-
-    public void On_Channel_Status_Changed(object sender, PropertyChangedEventArgs channelArgs)
-    {
-        IChannelSession source = (IChannelSession) sender;
-        if (channelArgs.PropertyName == "ChannelState")
-        {
-            switch (source.ChannelState)
-            {
-                case ConnectionState.Connected:
-                    Debug.Log($"{source.Channel.Name} connected");
-                    break;
-                case ConnectionState.Connecting:
-                    Debug.Log("Channel connecting");
-                    break;
-                case ConnectionState.Disconnected:
-                    Debug.Log($"{source.Channel.Name} disconnected");
-                    break;
-                case ConnectionState.Disconnecting:
-                    Debug.Log($"{source.Channel.Name} disconnecting");
-                    Bind_Channel_Callback_Listeners(false, channelSession);
-                    break;
+                channelSesh.PropertyChanged -= On_Channel_Status_Changed;
             }
         }
-    }
     
-    public void On_Audio_State_Changed(object sender, PropertyChangedEventArgs audioArgs)
-    {
-        IChannelSession source = (IChannelSession) sender;
-
-        if (audioArgs.PropertyName == "AudioState")
+    
+    
+        #region Loggin methods 
+    
+        public void Login()
         {
-            switch (source.AudioState)
+            AccountId accountId = new AccountId(issuer,_userName,domain);
+            _loginSession = _client.GetLoginSession(accountId);
+            Bind_Login_Callback_Listeners(true,_loginSession);
+            _loginSession.BeginLogin(server, _loginSession.GetLoginToken(key, timespan), ar =>
             {
-                case ConnectionState.Connected:
-                    Debug.Log("Audio channel connected");
-                    break;
-                case ConnectionState.Connecting:
-                    Debug.Log("Audio channel connecting");
-                    break;
-                case ConnectionState.Disconnected:
-                    Debug.Log("Audio channel disconnected");
-                    break;
-                case ConnectionState.Disconnecting:
-                    Debug.Log("Audio channel disconnecting");
-                    channelSession.PropertyChanged -= On_Audio_State_Changed;
-                    break;
+                try
+                {
+                    _loginSession.EndLogin(ar);
+                }
+                catch (Exception e)
+                {
+                    Bind_Login_Callback_Listeners(false,_loginSession);
+                    Debug.Log(e.Message);
+                }
+                JoinChannel(NetworkClient.connection.identity.GetComponent<PlayerManager>().channelName);
+
+            });
+        }
+    
+
+        public void Logout()
+        {
+            if (_loginSession != null)
+            {
+                _loginSession.Logout();
+                Bind_Login_Callback_Listeners(false, _loginSession);
             }
         }
-    }
-    
-    #endregion
 
-    public void Mute()
-    {
-        client.AudioInputDevices.Muted = !client.AudioInputDevices.Muted;
+        public void Login_status(object sender, PropertyChangedEventArgs loginArgs)
+        {
+            ILoginSession source = (ILoginSession) sender;
+
+            if ("State" == loginArgs.PropertyName)
+            {
+                switch (source.State)
+                {
+                    case LoginState.LoggedIn:
+                        Debug.Log("Logged in");
+                        break;
+                    case LoginState.LoggingIn:
+                        Debug.Log("Logging in");
+                        break;
+                    case LoginState.LoggedOut:
+                        Debug.Log("Logged out");
+                        break;
+                    case LoginState.LoggingOut:
+                        Debug.Log("Logging out");
+                        break;
+                }
+            }
+        }
+    
+    
+        #endregion
+    
+    
+        #region Join Channel methods
+
+        public void JoinChannel(string channelName)
+        {
+            ChannelId channelId = new ChannelId(issuer,channelName,domain);
+            _channelSession = _loginSession.GetChannelSession(channelId);
+            Bind_Channel_Callback_Listeners(true, _channelSession);
+            _channelSession.PropertyChanged += On_Audio_State_Changed;
+            _channelSession.BeginConnect(true, false, true, _channelSession.GetConnectToken(key, timespan), ar =>
+            {
+                try
+                {
+                    _channelSession.EndConnect(ar);
+                }
+                catch (Exception e)
+                {
+                    Bind_Channel_Callback_Listeners(false,_channelSession);
+                    _channelSession.PropertyChanged -= On_Audio_State_Changed;
+                    Debug.Log(e.Message);
+                }
+
+            });
+        }
+
+        public void LeaveChannel()
+        {
+            if (_channelSession != null)
+            {
+                ChannelId channelId = _channelSession.Channel;
+                _channelSession.Disconnect();
+                _loginSession.DeleteChannelSession(channelId);
+            }
+        }
+
+        public void On_Channel_Status_Changed(object sender, PropertyChangedEventArgs channelArgs)
+        {
+            IChannelSession source = (IChannelSession) sender;
+            if (channelArgs.PropertyName == "ChannelState")
+            {
+                switch (source.ChannelState)
+                {
+                    case ConnectionState.Connected:
+                        Debug.Log($"{source.Channel.Name} connected");
+                        break;
+                    case ConnectionState.Connecting:
+                        Debug.Log("Channel connecting");
+                        break;
+                    case ConnectionState.Disconnected:
+                        Debug.Log($"{source.Channel.Name} disconnected");
+                        break;
+                    case ConnectionState.Disconnecting:
+                        Debug.Log($"{source.Channel.Name} disconnecting");
+                        Bind_Channel_Callback_Listeners(false, _channelSession);
+                        break;
+                }
+            }
+        }
+    
+        public void On_Audio_State_Changed(object sender, PropertyChangedEventArgs audioArgs)
+        {
+            IChannelSession source = (IChannelSession) sender;
+
+            if (audioArgs.PropertyName == "AudioState")
+            {
+                switch (source.AudioState)
+                {
+                    case ConnectionState.Connected:
+                        Debug.Log("Audio channel connected");
+                        break;
+                    case ConnectionState.Connecting:
+                        Debug.Log("Audio channel connecting");
+                        break;
+                    case ConnectionState.Disconnected:
+                        Debug.Log("Audio channel disconnected");
+                        break;
+                    case ConnectionState.Disconnecting:
+                        Debug.Log("Audio channel disconnecting");
+                        _channelSession.PropertyChanged -= On_Audio_State_Changed;
+                        break;
+                }
+            }
+        }
+    
+        #endregion
+
+        public void Mute()
+        {
+            _client.AudioInputDevices.Muted = !_client.AudioInputDevices.Muted;
+        }
     }
 }

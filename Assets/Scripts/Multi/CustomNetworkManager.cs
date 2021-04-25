@@ -5,6 +5,7 @@ using Mirror;
 using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vivox;
 
 namespace Multi
 {
@@ -25,6 +26,7 @@ namespace Multi
         public override void OnServerAddPlayer(NetworkConnection conn)
         {
             base.OnServerAddPlayer(conn);
+            Debug.Log("aaaa");
             if (numPlayers == 1)
             {
                 _hostConn = conn;
@@ -48,7 +50,7 @@ namespace Multi
         public override void OnServerDisconnect(NetworkConnection conn)
         {
             base.OnServerDisconnect(conn);
-            if (numPlayers < 2)
+            if (numPlayers < 2 && conn != _hostConn)
             {
                 _host.TargetDisableStartButton(_hostConn);
             }
@@ -63,7 +65,7 @@ namespace Multi
         public override void OnClientSceneChanged(NetworkConnection conn)
         {
             base.OnClientSceneChanged(conn);
-            if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Underground"))
+            if (networkSceneName != "Underground")
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -78,12 +80,16 @@ namespace Multi
         {
             base.OnStopClient();
             SceneManager.LoadScene("Lobby");
+            VivoxManager vivox = GameObject.Find("VivoxManager").GetComponent<VivoxManager>();
+            vivox.LeaveChannel();
+            vivox.Logout();
+            
         }
 
         public override void OnClientConnect(NetworkConnection conn)
         {
             base.OnClientConnect(conn);
-            var vivox = GameObject.Find("VivoxManager").GetComponent<VivoxManager>();
+            VivoxManager vivox = GameObject.Find("VivoxManager").GetComponent<VivoxManager>();
             vivox.Login();
         }
     }

@@ -533,6 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b673f79bdbe4ee08dd6f29e1e5aabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connected: 0
 --- !u!4 &262056909
 Transform:
   m_ObjectHideFlags: 0
@@ -2882,7 +2883,7 @@ MonoBehaviour:
   serverTickRate: 30
   serverBatching: 0
   serverBatchInterval: 0
-  offlineScene: Assets/Scenes/Lobby.unity
+  offlineScene: 
   onlineScene: 
   transport: {fileID: 8738287418885584877}
   networkAddress: localhost
@@ -2894,7 +2895,8 @@ MonoBehaviour:
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 4597204015182781365, guid: 89f6e89b0a83e7f4396b0dab27ee8ffc, type: 3}
 --- !u!114 &8738287418885584877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2914,7 +2916,7 @@ MonoBehaviour:
   CongestionWindow: 0
   SendWindowSize: 4096
   ReceiveWindowSize: 4096
-  debugLog: 0
+  debugLog: 1
   statisticsGUI: 0
   statisticsLog: 0
 --- !u!4 &8738287418885584879
