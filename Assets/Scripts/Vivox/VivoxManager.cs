@@ -1,13 +1,8 @@
 ﻿
 using System;
-using System.Collections;
 using VivoxUnity;
 using UnityEngine;
 using System.ComponentModel;
-using Mirror;
-using Player;
-using UnityEngine;
-using VivoxUnity;
 
 namespace Vivox
 {
@@ -87,7 +82,7 @@ namespace Vivox
                     Bind_Login_Callback_Listeners(false,_loginSession);
                     Debug.Log(e.Message);
                 }
-                JoinChannel(NetworkClient.connection.identity.GetComponent<PlayerManager>().channelName);
+                JoinChannel(GameManager.singleton.vivoxChannelName);
 
             });
         }
@@ -152,10 +147,13 @@ namespace Vivox
 
         public void LeaveChannel()
         {
-            ChannelId channelId = _channelSession.Channel;
-            _channelSession.Disconnect();
-            _loginSession.DeleteChannelSession(channelId);
-            
+            if (_channelSession != null)
+            {
+                ChannelId channelId = _channelSession.Channel;
+                _channelSession.Disconnect();
+                if(_loginSession != null)
+                    _loginSession.DeleteChannelSession(channelId);
+            }
         }
 
         public void On_Channel_Status_Changed(object sender, PropertyChangedEventArgs channelArgs)

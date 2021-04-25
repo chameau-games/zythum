@@ -10,19 +10,35 @@ namespace Player
     {
         private GameObject _startGameButton;
         private TMP_Text _waitMessage;
-        
-        [SyncVar]
-        public string channelName;
+        public PlayerMovement playerMovement;
+        public GameObject camera;
+
+        [HideInInspector]
+        public static GameObject localPlayer;
 
         public void Activate()
         {
-            transform.Find("Camera").gameObject.SetActive(true);
-            GetComponent<PlayerMovement>().enabled = true;
+            if (isLocalPlayer)
+            {
+                camera.SetActive(true);
+                playerMovement.enabled = true;
+            }
+        }
+        
+        public void Deactivate()
+        {
+            if (isLocalPlayer)
+            {
+                camera.SetActive(false);
+                playerMovement.enabled = false;
+            }
+            
         }
 
         public override void OnStartLocalPlayer()
         {
             base.OnStartLocalPlayer();
+            localPlayer = gameObject;
             if (CustomNetworkManager.singleton.isHost)
             {
                 _startGameButton = GameObject.Find("StartGameButton");
@@ -31,33 +47,6 @@ namespace Player
             {
                 _waitMessage = GameObject.Find("WaitMessage")?.GetComponent<TMP_Text>();
             }
-        }
-
-        [TargetRpc]
-        public void TargetEnableStartButton(NetworkConnection target)
-        {
-            if (_startGameButton != null)
-                _startGameButton.GetComponent<Button>().interactable = true;
-        }
-
-        [TargetRpc]
-        public void TargetDisableStartButton(NetworkConnection target)
-        {
-            if (_startGameButton != null)
-                _startGameButton.GetComponent<Button>().interactable = false;
-        }
-
-        [TargetRpc]
-        public void TargetSetWaitMessage(NetworkConnection conn, string msg)
-        {
-            if (_waitMessage != null)
-                _waitMessage.text = msg;
-        }
-
-        [Command]
-        public void CmdStartGame()
-        {
-            CustomNetworkManager.singleton.ServerChangeScene("Underground");
         }
     }
 }

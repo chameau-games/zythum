@@ -3,7 +3,6 @@ using Multi;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Menu
 {
@@ -21,7 +20,7 @@ namespace Menu
 
         private void Start()
         {
-            _networkManager = (CustomNetworkManager) NetworkManager.singleton;
+            _networkManager = CustomNetworkManager.singleton;
         }
 
         public void OnClickJoinButton()
@@ -44,7 +43,7 @@ namespace Menu
 
         public void OnClickStartButton()
         {
-            _networkManager.StartGame();
+            GameManager.singleton.CmdAskForStart();
         }
 
         public void OnClickBackButton()
@@ -55,7 +54,11 @@ namespace Menu
             }
             else
             {
-                _networkManager.StopHost();
+                Debug.Log(_networkManager.mode.ToString());
+                if(_networkManager.mode == NetworkManagerMode.Host)
+                    _networkManager.StopHost();
+                else if(_networkManager.mode == NetworkManagerMode.ClientOnly)
+                    _networkManager.StopClient();
             }
 
         }

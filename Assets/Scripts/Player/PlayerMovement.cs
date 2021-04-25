@@ -56,11 +56,18 @@ namespace Player
             }
         }
 
+        private void OnDisable()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         private void OnEnable()
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+       
 
         private void Update()
         {
