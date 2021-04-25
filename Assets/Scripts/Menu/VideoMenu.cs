@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class VideoMenu : MonoBehaviour
 {
@@ -12,23 +14,22 @@ public class VideoMenu : MonoBehaviour
     
     Resolution[] _resolutions;
 
-    public void Awake()
+    public void OnEnable()
     {
-        _resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height}).Distinct().ToArray();
+        _resolutions = Screen.resolutions; //.Select(resolution => new Resolution { width = resolution.width, height = resolution.height}).Distinct().ToArray();
         resolutionDropdown.ClearOptions();
+        Debug.Log(_resolutions.Length);
 
         List<string> resolutionsOptions = new List<string>();
         int index = 0;
-        int compteur = 0;
-        foreach (var resolution in _resolutions)
+        for (int i = 0; i < _resolutions.Length; i++)
         {
-            string option = resolution.width + "x" + resolution.height;
+            string option = _resolutions[i].width + "x" + _resolutions[i].height;
             resolutionsOptions.Add(option);
-            if (resolution.width == Screen.width && resolution.height == Screen.height)
-                index = compteur;
-            compteur++;
+            if (_resolutions[i].width == Screen.width && _resolutions[i].height == Screen.height)
+                index = i;
         }
-        
+
         resolutionDropdown.AddOptions(resolutionsOptions);
         SetResolution(index);
         resolutionDropdown.RefreshShownValue();

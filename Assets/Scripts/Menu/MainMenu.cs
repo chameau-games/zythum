@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        _sceneManager = GameObject.Find("ScenesManager").GetComponent<ScenesManager>();
+        //_sceneManager = GameObject.Find("ScenesManager").GetComponent<ScenesManager>();
     }
 
     public void OnClickPlayButton()
