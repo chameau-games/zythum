@@ -27,7 +27,7 @@ namespace Multi
         {
             base.OnServerAddPlayer(conn);
             Debug.Log("aaaa");
-            if (numPlayers == 1)
+            if (numPlayers == 1 && _host == null)
             {
                 _hostConn = conn;
                 _host = conn.identity.gameObject.GetComponent<PlayerManager>();
@@ -35,7 +35,7 @@ namespace Multi
                 //VIVOX
                 _host.channelName = SystemInfo.deviceUniqueIdentifier;
             }
-            else if (numPlayers == 2)
+            else if (numPlayers == 2 && _hosted == null)
             {
                 _hostedConn = conn;
                 _hosted = conn.identity.gameObject.GetComponent<PlayerManager>();
@@ -65,6 +65,7 @@ namespace Multi
         public override void OnClientSceneChanged(NetworkConnection conn)
         {
             base.OnClientSceneChanged(conn);
+            Debug.Log("heyyy this is not very nice");
             if (networkSceneName != "Underground")
             {
                 Cursor.visible = true;
@@ -72,7 +73,8 @@ namespace Multi
             }
             else
             {
-                NetworkClient.connection.identity.GetComponent<PlayerManager>().Activate();
+                if(NetworkClient.connection.identity != null)
+                    NetworkClient.connection.identity.GetComponent<PlayerManager>().Activate();
             }
         }
 
