@@ -83,7 +83,6 @@ namespace Multi
             VivoxManager vivox = GameObject.Find("VivoxManager").GetComponent<VivoxManager>();
             vivox.LeaveChannel();
             vivox.Logout();
-            
         }
 
         public override void OnClientConnect(NetworkConnection conn)

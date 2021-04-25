@@ -1,4 +1,8 @@
-﻿using System;
+﻿
+using System;
+using System.Collections;
+using VivoxUnity;
+using UnityEngine;
 using System.ComponentModel;
 using Mirror;
 using Player;
@@ -25,6 +29,7 @@ namespace Vivox
             if (FindObjectsOfType(GetType()).Length > 1)  //POUR EVITER LES DUPLICATE
             {
                 Destroy(gameObject);
+                return;
             }
             DontDestroyOnLoad(this);
             _userName = SystemInfo.deviceUniqueIdentifier;
@@ -63,9 +68,8 @@ namespace Vivox
             }
         }
     
-    
-    
-        #region Loggin methods 
+
+    #region Loggin methods 
     
         public void Login()
         {
@@ -87,15 +91,11 @@ namespace Vivox
 
             });
         }
-    
-
+        
         public void Logout()
         {
-            if (_loginSession != null)
-            {
-                _loginSession.Logout();
-                Bind_Login_Callback_Listeners(false, _loginSession);
-            }
+            _loginSession.Logout();
+            Bind_Login_Callback_Listeners(false, _loginSession);
         }
 
         public void Login_status(object sender, PropertyChangedEventArgs loginArgs)
@@ -152,12 +152,10 @@ namespace Vivox
 
         public void LeaveChannel()
         {
-            if (_channelSession != null)
-            {
-                ChannelId channelId = _channelSession.Channel;
-                _channelSession.Disconnect();
-                _loginSession.DeleteChannelSession(channelId);
-            }
+            ChannelId channelId = _channelSession.Channel;
+            _channelSession.Disconnect();
+            _loginSession.DeleteChannelSession(channelId);
+            
         }
 
         public void On_Channel_Status_Changed(object sender, PropertyChangedEventArgs channelArgs)
@@ -168,17 +166,17 @@ namespace Vivox
                 switch (source.ChannelState)
                 {
                     case ConnectionState.Connected:
-                        Debug.Log($"{source.Channel.Name} connected");
+                        Debug.Log("Channel connected");
                         break;
                     case ConnectionState.Connecting:
                         Debug.Log("Channel connecting");
                         break;
                     case ConnectionState.Disconnected:
-                        Debug.Log($"{source.Channel.Name} disconnected");
+                        Debug.Log("Channel disconnected");
+                        Bind_Channel_Callback_Listeners(false, _channelSession);
                         break;
                     case ConnectionState.Disconnecting:
-                        Debug.Log($"{source.Channel.Name} disconnecting");
-                        Bind_Channel_Callback_Listeners(false, _channelSession);
+                        Debug.Log("Channel disconnecting");
                         break;
                 }
             }
@@ -200,10 +198,10 @@ namespace Vivox
                         break;
                     case ConnectionState.Disconnected:
                         Debug.Log("Audio channel disconnected");
+                        _channelSession.PropertyChanged -= On_Audio_State_Changed;
                         break;
                     case ConnectionState.Disconnecting:
                         Debug.Log("Audio channel disconnecting");
-                        _channelSession.PropertyChanged -= On_Audio_State_Changed;
                         break;
                 }
             }
