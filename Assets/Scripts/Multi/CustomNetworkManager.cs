@@ -70,7 +70,7 @@ namespace Multi
             }
             else
             {
-                ClientScene.localPlayer.GetComponent<PlayerManager>().Activate();
+                NetworkClient.connection.identity.GetComponent<PlayerManager>().Activate();
             }
         }
 

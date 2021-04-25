@@ -79,7 +79,7 @@ public class VivoxManager : MonoBehaviour
                 Bind_Login_Callback_Listeners(false,loginSession);
                 Debug.Log(e.Message);
             }
-            JoinChannel(ClientScene.localPlayer.GetComponent<PlayerManager>().channelName);
+            JoinChannel(NetworkClient.connection.identity.GetComponent<PlayerManager>().channelName);
 
         });
     }
