@@ -1,10 +1,9 @@
-﻿using System;
-using Mirror;
+﻿using Photon.Pun;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerMovement : NetworkBehaviour
+    public class PlayerMovement : MonoBehaviourPun
     {
         public float maxWalkSpeed;
         public float maxSprintSpeed;
@@ -29,20 +28,6 @@ namespace Player
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-        }
-
-        private void OnCollisionEnter(Collision other)
-        {
-            foreach (ContactPoint contact in other.contacts)
-            {
-                if (contact.otherCollider.gameObject.layer == 8)
-                    _isGrounded = true;
-            }
-        }
-
-        public override void OnStartClient()
-        {
-            base.OnStartClient();
             foreach (GameObject o in GameObject.FindGameObjectsWithTag("Player"))
             {
                 if (o != gameObject)
@@ -56,6 +41,15 @@ namespace Player
             }
         }
 
+        private void OnCollisionEnter(Collision other)
+        {
+            foreach (ContactPoint contact in other.contacts)
+            {
+                if (contact.otherCollider.gameObject.layer == 8)
+                    _isGrounded = true;
+            }
+        }
+        
         private void OnDisable()
         {
             Cursor.visible = true;
@@ -71,7 +65,7 @@ namespace Player
 
         private void Update()
         {
-            if (isLocalPlayer && _canControl)
+            if (photonView.IsMine && _canControl)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -91,7 +85,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            if (!isLocalPlayer || _isGamePaused) return;
+            if (!photonView.IsMine || _isGamePaused) return;
 
             //MOVEMENTS JOUEUR
             float speedH = Input.GetAxis("Horizontal");

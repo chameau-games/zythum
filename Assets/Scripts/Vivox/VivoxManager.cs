@@ -82,7 +82,7 @@ namespace Vivox
                     Bind_Login_Callback_Listeners(false,_loginSession);
                     Debug.Log(e.Message);
                 }
-                JoinChannel(GameManager.singleton.vivoxChannelName);
+                // JoinChannel(GameManager.singleton.vivoxChannelName);
 
             });
         }
