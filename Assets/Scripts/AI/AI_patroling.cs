@@ -15,6 +15,8 @@ public class AI_patroling : MonoBehaviour
     private int nextPosition;
     private float waittime;
     private Animator animator;
+
+    public bool gameover;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,9 +46,10 @@ public class AI_patroling : MonoBehaviour
         transform.LookAt(player.position);
         if (Vector3.Distance(transform.position, player.position) < 1f)
         {
-            speed = 0;
             animator.SetBool("iswalking",false);
-            
+            speed = 0;
+            gameover = true;
+            CustomNetworkManager.singleton.ServerChangeScene("Gameover");
         }
 
     }

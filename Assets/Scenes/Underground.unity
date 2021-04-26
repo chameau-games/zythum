@@ -271,6 +271,7 @@ MonoBehaviour:
   - {fileID: 762292042}
   _position: 0
   startwaittime: 1
+  gameover: 0
 --- !u!65 &207228237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2362,6 +2363,7 @@ MonoBehaviour:
   - {fileID: 762292042}
   _position: 7
   startwaittime: 1
+  gameover: 0
 --- !u!114 &1352351141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2498,7 +2500,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 4
   m_Range: 10
-  m_SpotAngle: 80
+  m_SpotAngle: 65.7
   m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
@@ -2696,6 +2698,7 @@ MonoBehaviour:
   - {fileID: 762292042}
   _position: 5
   startwaittime: 1
+  gameover: 0
 --- !u!114 &1684860748
 MonoBehaviour:
   m_ObjectHideFlags: 0

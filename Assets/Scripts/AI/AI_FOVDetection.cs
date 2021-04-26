@@ -94,7 +94,6 @@ public class AI_FOVDetection : MonoBehaviour
                 }
             }
         }
-
         return false;
     }
 }
