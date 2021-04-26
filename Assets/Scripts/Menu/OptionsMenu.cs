@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class OptionsMenu : MonoBehaviour
     
     
     // Go to audio menu
-    
+
     public void OnClickAudioButton()
     {
         gameObject.SetActive(false);
