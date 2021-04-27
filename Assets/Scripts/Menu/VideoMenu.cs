@@ -1,58 +1,58 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
-public class VideoMenu : MonoBehaviour
+namespace Menu
 {
-    public GameObject optionMenu;
-
-    public TMP_Dropdown resolutionDropdown;
-    
-    Resolution[] _resolutions;
-
-    public void OnEnable()
+    public class VideoMenu : MonoBehaviour
     {
-        _resolutions = Screen.resolutions; //.Select(resolution => new Resolution { width = resolution.width, height = resolution.height}).Distinct().ToArray();
-        resolutionDropdown.ClearOptions();
-        Debug.Log(_resolutions.Length);
+        public GameObject optionMenu;
 
-        List<string> resolutionsOptions = new List<string>();
-        int index = 0;
-        for (int i = 0; i < _resolutions.Length; i++)
+        public TMP_Dropdown resolutionDropdown;
+    
+        Resolution[] _resolutions;
+
+        public void OnEnable()
         {
-            string option = _resolutions[i].width + "x" + _resolutions[i].height;
-            resolutionsOptions.Add(option);
-            if (_resolutions[i].width == Screen.width && _resolutions[i].height == Screen.height)
-                index = i;
+            _resolutions = Screen.resolutions; //.Select(resolution => new Resolution { width = resolution.width, height = resolution.height}).Distinct().ToArray();
+            resolutionDropdown.ClearOptions();
+            Debug.Log(_resolutions.Length);
+
+            List<string> resolutionsOptions = new List<string>();
+            int index = 0;
+            for (int i = 0; i < _resolutions.Length; i++)
+            {
+                string option = _resolutions[i].width + "x" + _resolutions[i].height;
+                resolutionsOptions.Add(option);
+                if (_resolutions[i].width == Screen.width && _resolutions[i].height == Screen.height)
+                    index = i;
+            }
+
+            resolutionDropdown.AddOptions(resolutionsOptions);
+            // SetResolution(index);
+            resolutionDropdown.RefreshShownValue();
+        }
+        // Return to options menu
+
+        public void OnClickReturnButton()
+        {
+            gameObject.SetActive(false);
+            optionMenu.SetActive(true);
         }
 
-        resolutionDropdown.AddOptions(resolutionsOptions);
-        SetResolution(index);
-        resolutionDropdown.RefreshShownValue();
-    }
-    // Return to options menu
+        public void SetResolution(int index)
+        {
+            Resolution resolution = _resolutions[index];
+            Screen.SetResolution(resolution.width,resolution.height,Screen.fullScreen);
+        }
 
-    public void OnClickReturnButton()
-    {
-        gameObject.SetActive(false);
-        optionMenu.SetActive(true);
-    }
-
-    public void SetResolution(int index)
-    {
-        Resolution resolution = _resolutions[index];
-        Screen.SetResolution(resolution.width,resolution.height,Screen.fullScreen);
-    }
-
-    public void SetFullScreen(int index)
-    {
-        if (index == 0)
-            Screen.fullScreen = false;
-        else
-            Screen.fullScreen = true; 
+        public void SetFullScreen(int index)
+        {
+            if (index == 0)
+                Screen.fullScreen = false;
+            else
+                Screen.fullScreen = true; 
+        }
     }
 }

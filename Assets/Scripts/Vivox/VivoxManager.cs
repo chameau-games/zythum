@@ -1,8 +1,8 @@
-﻿
-using System;
+﻿using System;
 using VivoxUnity;
 using UnityEngine;
 using System.ComponentModel;
+using Photon.Pun;
 
 namespace Vivox
 {
@@ -21,11 +21,12 @@ namespace Vivox
 
         private void Awake()
         {
-            if (FindObjectsOfType(GetType()).Length > 1)  //POUR EVITER LES DUPLICATE
+            if (FindObjectsOfType(GetType()).Length > 1) //POUR EVITER LES DUPLICATE
             {
                 Destroy(gameObject);
                 return;
             }
+
             DontDestroyOnLoad(this);
             _userName = SystemInfo.deviceUniqueIdentifier;
             _client = new Client();
@@ -37,9 +38,9 @@ namespace Vivox
         {
             _client.Uninitialize();
         }
-    
 
-        public void Bind_Login_Callback_Listeners(bool bind, ILoginSession loginSesh)
+
+        private void Bind_Login_Callback_Listeners(bool bind, ILoginSession loginSesh)
         {
             if (bind)
             {
@@ -51,7 +52,7 @@ namespace Vivox
             }
         }
 
-        public void Bind_Channel_Callback_Listeners(bool bind, IChannelSession channelSesh)
+        private void Bind_Channel_Callback_Listeners(bool bind, IChannelSession channelSesh)
         {
             if (bind)
             {
@@ -62,15 +63,15 @@ namespace Vivox
                 channelSesh.PropertyChanged -= On_Channel_Status_Changed;
             }
         }
-    
 
-    #region Loggin methods 
-    
+
+        #region Login methods
+
         public void Login()
         {
-            AccountId accountId = new AccountId(issuer,_userName,domain);
+            AccountId accountId = new AccountId(issuer, _userName, domain);
             _loginSession = _client.GetLoginSession(accountId);
-            Bind_Login_Callback_Listeners(true,_loginSession);
+            Bind_Login_Callback_Listeners(true, _loginSession);
             _loginSession.BeginLogin(server, _loginSession.GetLoginToken(key, timespan), ar =>
             {
                 try
@@ -79,21 +80,21 @@ namespace Vivox
                 }
                 catch (Exception e)
                 {
-                    Bind_Login_Callback_Listeners(false,_loginSession);
+                    Bind_Login_Callback_Listeners(false, _loginSession);
                     Debug.Log(e.Message);
                 }
-                // JoinChannel(GameManager.singleton.vivoxChannelName);
 
+                JoinChannel(PhotonNetwork.CurrentRoom.Name);
             });
         }
-        
-        public void Logout()
+
+        private void Logout()
         {
             _loginSession.Logout();
             Bind_Login_Callback_Listeners(false, _loginSession);
         }
 
-        public void Login_status(object sender, PropertyChangedEventArgs loginArgs)
+        private void Login_status(object sender, PropertyChangedEventArgs loginArgs)
         {
             ILoginSession source = (ILoginSession) sender;
 
@@ -116,16 +117,15 @@ namespace Vivox
                 }
             }
         }
-    
-    
+
         #endregion
-    
-    
+
+
         #region Join Channel methods
 
-        public void JoinChannel(string channelName)
+        private void JoinChannel(string channelName)
         {
-            ChannelId channelId = new ChannelId(issuer,channelName,domain);
+            ChannelId channelId = new ChannelId(issuer, channelName, domain);
             _channelSession = _loginSession.GetChannelSession(channelId);
             Bind_Channel_Callback_Listeners(true, _channelSession);
             _channelSession.PropertyChanged += On_Audio_State_Changed;
@@ -137,11 +137,10 @@ namespace Vivox
                 }
                 catch (Exception e)
                 {
-                    Bind_Channel_Callback_Listeners(false,_channelSession);
+                    Bind_Channel_Callback_Listeners(false, _channelSession);
                     _channelSession.PropertyChanged -= On_Audio_State_Changed;
                     Debug.Log(e.Message);
                 }
-
             });
         }
 
@@ -150,13 +149,15 @@ namespace Vivox
             if (_channelSession != null)
             {
                 ChannelId channelId = _channelSession.Channel;
-                _channelSession.Disconnect();
-                if(_loginSession != null)
-                    _loginSession.DeleteChannelSession(channelId);
+                _channelSession.Disconnect(ar =>
+                {
+                    // _loginSession.DeleteChannelSession(channelId);
+                    Logout();
+                });
             }
         }
 
-        public void On_Channel_Status_Changed(object sender, PropertyChangedEventArgs channelArgs)
+        private void On_Channel_Status_Changed(object sender, PropertyChangedEventArgs channelArgs)
         {
             IChannelSession source = (IChannelSession) sender;
             if (channelArgs.PropertyName == "ChannelState")
@@ -179,8 +180,8 @@ namespace Vivox
                 }
             }
         }
-    
-        public void On_Audio_State_Changed(object sender, PropertyChangedEventArgs audioArgs)
+
+        private void On_Audio_State_Changed(object sender, PropertyChangedEventArgs audioArgs)
         {
             IChannelSession source = (IChannelSession) sender;
 
@@ -204,7 +205,7 @@ namespace Vivox
                 }
             }
         }
-    
+
         #endregion
 
         public void Mute()

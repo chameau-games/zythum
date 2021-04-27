@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Vivox;
 
 namespace Menu
 {
@@ -45,6 +46,12 @@ namespace Menu
                 PhotonNetwork.GameVersion = gameVersion;
             }
         }
+
+        private void CreateRandomRoom()
+        {
+            string randomString = new System.Random().Next(10000, 99999).ToString();
+            PhotonNetwork.CreateRoom(randomString, new RoomOptions {MaxPlayers = 2});
+        }
         
         #region PunCallbacks
 
@@ -56,6 +63,7 @@ namespace Menu
 
         public override void OnLeftRoom()
         {
+            GameObject.Find("VivoxManager").GetComponent<VivoxManager>().LeaveChannel();
             SceneManager.LoadScene("Lobby");
         }
 
@@ -80,6 +88,7 @@ namespace Menu
                 waitMessage.SetActive(true);
                 waitMessage.GetComponent<TMP_Text>().text = "En attente du lancement de la partie";
             }
+            GameObject.Find("VivoxManager").GetComponent<VivoxManager>().Login();
         }
 
         public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
@@ -104,6 +113,11 @@ namespace Menu
             }
         }
 
+        public override void OnCreateRoomFailed(short returnCode, string message)
+        {
+            CreateRandomRoom();
+        }
+
         #endregion
 
         #region JoinHostBackButtons
@@ -115,9 +129,7 @@ namespace Menu
 
         public void OnClickHostButton()
         {
-            
-            string randomString = new System.Random().Next(10000, 99999).ToString();
-            PhotonNetwork.CreateRoom(randomString, new RoomOptions {MaxPlayers = 2});
+            CreateRandomRoom();
         }
 
         public void OnClickBackButton()

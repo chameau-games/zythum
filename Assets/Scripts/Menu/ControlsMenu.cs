@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 
-public class ControlsMenu : MonoBehaviour
+namespace Menu
 {
-    public GameObject optionMenu;
+    public class ControlsMenu : MonoBehaviour
+    {
+        public GameObject optionMenu;
    
     
-    // Return to options menu
+        // Return to options menu
 
-    public void OnClickReturnButton()
-    {
-        gameObject.SetActive(false);
-        optionMenu.SetActive(true);
+        public void OnClickReturnButton()
+        {
+            gameObject.SetActive(false);
+            optionMenu.SetActive(true);
+        }
     }
 }
