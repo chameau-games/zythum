@@ -49,7 +49,7 @@ public class AI_patroling : MonoBehaviour
             animator.SetBool("iswalking",false);
             speed = 0;
             gameover = true;
-            CustomNetworkManager.singleton.ServerChangeScene("Gameover");
+            // CustomNetworkManager.singleton.ServerChangeScene("Gameover");
         }
 
     }
