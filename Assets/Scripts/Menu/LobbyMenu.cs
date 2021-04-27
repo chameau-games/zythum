@@ -16,10 +16,12 @@ namespace Menu
         public GameObject startGameButton;
         public GameObject hostGameButton;
         public GameObject joinGameButton;
+        public GameObject backButton;
         public GameObject joinSection;
         public GameObject hostSection;
         public GameObject waitMessage;
         public GameObject hostRoomCode;
+        public GameObject connectionText;
         public string gameVersion;
 
         private string _roomCode;
@@ -55,10 +57,17 @@ namespace Menu
         
         #region PunCallbacks
 
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
         public override void OnConnectedToMaster()
         {
             hostSection.SetActive(true);
             joinSection.SetActive(true);
+            backButton.SetActive(true);
+            connectionText.SetActive(false);
         }
 
         public override void OnLeftRoom()
@@ -134,7 +143,7 @@ namespace Menu
 
         public void OnClickBackButton()
         {
-            if (hostSection.activeSelf && joinSection.activeSelf)
+            if (!PhotonNetwork.InRoom)
             {
                 SceneManager.LoadScene("MainMenu");
             }
