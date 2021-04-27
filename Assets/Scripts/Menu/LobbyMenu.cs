@@ -50,7 +50,6 @@ namespace Menu
 
         public override void OnConnectedToMaster()
         {
-            Debug.Log("on est connecté au master!");
             hostSection.SetActive(true);
             joinSection.SetActive(true);
         }
