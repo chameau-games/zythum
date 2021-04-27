@@ -295,6 +295,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 2.5, z: -2.82}
   m_Center: {x: -4.12, y: 0, z: -1.49}
+--- !u!95 &112963837
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112963831}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 0c07da09e88b78a4d820a2b4f5f9231a, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0212783bf79dc654ca748a039afd51f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &223974226
 GameObject:
   m_ObjectHideFlags: 0
