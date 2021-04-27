@@ -1,60 +1,23 @@
-﻿using Mirror;
-using Multi;
-using TMPro;
+﻿using Photon.Pun;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Player
 {
-    public class PlayerManager : NetworkBehaviour
+    public class PlayerManager : MonoBehaviourPunCallbacks
     {
-        private GameObject _startGameButton;
-        private TMP_Text _waitMessage;
 
-        public void Activate()
-        {
-            transform.Find("Camera").gameObject.SetActive(true);
-            GetComponent<PlayerMovement>().enabled = true;
-        }
+        public static GameObject localPlayerInstance;
 
-        public override void OnStartLocalPlayer()
+        private void Awake()
         {
-            base.OnStartLocalPlayer();
-            if (CustomNetworkManager.singleton.isHost)
+            if (photonView.IsMine)
             {
-                _startGameButton = GameObject.Find("StartGameButton");
+                PlayerManager.localPlayerInstance = this.gameObject;
+                GetComponent<PlayerMovement>().enabled = true;
+                transform.Find("Camera").gameObject.SetActive(true);
             }
-            else if (CustomNetworkManager.singleton.isHosted)
-            {
-                _waitMessage = GameObject.Find("WaitMessage")?.GetComponent<TMP_Text>();
-            }
-        }
-
-        [TargetRpc]
-        public void TargetEnableStartButton(NetworkConnection target)
-        {
-            if (_startGameButton != null)
-                _startGameButton.GetComponent<Button>().interactable = true;
-        }
-
-        [TargetRpc]
-        public void TargetDisableStartButton(NetworkConnection target)
-        {
-            if (_startGameButton != null)
-                _startGameButton.GetComponent<Button>().interactable = false;
-        }
-
-        [TargetRpc]
-        public void TargetSetWaitMessage(NetworkConnection conn, string msg)
-        {
-            if (_waitMessage != null)
-                _waitMessage.text = msg;
-        }
-
-        [Command]
-        public void CmdStartGame()
-        {
-            CustomNetworkManager.singleton.ServerChangeScene("Underground");
+        
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 }

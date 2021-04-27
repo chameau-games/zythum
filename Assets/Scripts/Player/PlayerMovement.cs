@@ -1,10 +1,9 @@
-﻿using System;
-using Mirror;
+﻿using Photon.Pun;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerMovement : NetworkBehaviour
+    public class PlayerMovement : MonoBehaviourPun
     {
         public float maxWalkSpeed;
         public float maxSprintSpeed;
@@ -21,23 +20,14 @@ namespace Player
 
         public new Transform transform;
         public GameObject playerCamera;
-        public new Rigidbody rigidbody;
+        private Rigidbody _rigidbody;
 
         private bool _isGrounded = true;
         private bool _canControl = true;
 
-        private void OnCollisionEnter(Collision other)
+        private void Awake()
         {
-            foreach (ContactPoint contact in other.contacts)
-            {
-                if (contact.otherCollider.gameObject.layer == 8)
-                    _isGrounded = true;
-            }
-        }
-
-        public override void OnStartClient()
-        {
-            base.OnStartClient();
+            _rigidbody = GetComponent<Rigidbody>();
             foreach (GameObject o in GameObject.FindGameObjectsWithTag("Player"))
             {
                 if (o != gameObject)
@@ -51,15 +41,31 @@ namespace Player
             }
         }
 
+        private void OnCollisionEnter(Collision other)
+        {
+            foreach (ContactPoint contact in other.contacts)
+            {
+                if (contact.otherCollider.gameObject.layer == 8)
+                    _isGrounded = true;
+            }
+        }
+        
+        private void OnDisable()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         private void OnEnable()
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+       
 
         private void Update()
         {
-            if (isLocalPlayer && _canControl)
+            if (photonView.IsMine && _canControl)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -79,7 +85,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            if (!isLocalPlayer || _isGamePaused) return;
+            if (!photonView.IsMine || _isGamePaused) return;
 
             //MOVEMENTS JOUEUR
             float speedH = Input.GetAxis("Horizontal");
@@ -104,14 +110,14 @@ namespace Player
                 movement /= movement.magnitude;
 
             movement *= (speed * Time.deltaTime);
-            movement.y = rigidbody.velocity.y;
+            movement.y = _rigidbody.velocity.y;
 
-            rigidbody.velocity = movement;
+            _rigidbody.velocity = movement;
 
             if (_isGrounded && Input.GetAxisRaw("Jump") > .9)
             {
                 _isGrounded = false;
-                rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                _rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             }
 
             //MOUVEMENTS CAMERA
