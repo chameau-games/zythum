@@ -1,32 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Photon.Pun;
 using UnityEngine;
 
-public class EndMenu : MonoBehaviour
+namespace Menu
 {
-    
-    private AI_patroling ptrl;
-    public Camera winCamera;
-    public Camera gameoverCamera;
-    private GameObject[] players;
-    // Start is called before the first frame update
-    void Start()
+    public class EndMenu : MonoBehaviour
     {
-        ptrl =GameObject.FindObjectOfType<AI_patroling>();
-        players=GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject p in players)
+    
+        public Camera winCamera;
+        public Camera gameoverCamera;
+        private GameObject[] _players;
+        // Start is called before the first frame update
+        void Start()
         {
-            p.transform.Find("Camera").gameObject.SetActive(false);
-        }
-        if (ptrl.gameover)
-        {
-            gameoverCamera.gameObject.SetActive(true);
-            winCamera.gameObject.SetActive(false);
-        }
-        else
-        {
-            gameoverCamera.gameObject.SetActive(false);
-            winCamera.gameObject.SetActive(true);
+            bool hasWin = (bool) PhotonNetwork.CurrentRoom.CustomProperties["hasWin"];
+            _players=GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject p in _players)
+            {
+                p.transform.Find("Camera").gameObject.SetActive(false);
+            }
+            if (!hasWin)
+            {
+                gameoverCamera.gameObject.SetActive(true);
+                winCamera.gameObject.SetActive(false);
+            }
+            else
+            {
+                gameoverCamera.gameObject.SetActive(false);
+                winCamera.gameObject.SetActive(true);
+            }
         }
     }
 }

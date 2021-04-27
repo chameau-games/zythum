@@ -145,6 +145,7 @@ namespace Menu
         {
             if (!PhotonNetwork.InRoom)
             {
+                PhotonNetwork.Disconnect();
                 SceneManager.LoadScene("MainMenu");
             }
             else
