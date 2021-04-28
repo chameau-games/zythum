@@ -13,7 +13,6 @@ namespace AI
         public float startwaittime;
 
         private FOVDetection _fovd;
-        private GameObject[] _players;
         private int _nextPosition;
         private float _waittime;
         private Animator _animator;
@@ -28,7 +27,6 @@ namespace AI
             }
             _animator=GetComponent<Animator>();
             _fovd = GameObject.FindObjectOfType<FOVDetection>();
-            _players = GameObject.FindGameObjectsWithTag("Player");
             setnextposition();
             _waittime = startwaittime;
         }
@@ -36,7 +34,6 @@ namespace AI
         // Update is called once per frame
         void Update()
         {
-            Debug.Log("update du patrol");
             if (_fovd.target==null)
             {
                 Patrol();
@@ -49,7 +46,7 @@ namespace AI
 
         private void ChasePlayer(Transform target)
         {
-
+            _animator.SetBool("iswalking",true);
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
                 transform.LookAt(target.position);
                 if (Vector3.Distance(transform.position, target.position) < 1f)

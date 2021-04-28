@@ -10,8 +10,7 @@ namespace AI
         public float maxAngle;
         public float maxRadius;
         public Transform target;
-
-        private bool _isInFov = false;
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -21,35 +20,19 @@ namespace AI
                 return;
             }
             isPatroling = true;
-            _players = GameObject.FindGameObjectsWithTag("Player");
         }
 
         // Update is called once per frame
         void Update()
         {
-            _isInFov = false;
+            _players = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject player in _players)
             {
                 if (inFOV(transform, player.transform, maxAngle, maxRadius))
-                    _isInFov = true;
-            }
-            
-            if (_isInFov)
-            {
-                _isInFov = inFOV(transform,p.transform , maxAngle, maxRadius);
-                if (_isInFov)
                 {
-                    Debug.Log("a trouvé un joueur");
-                    isPatroling = false;
-                    target = p.transform;
-                }
-                else
-                {
-                    Debug.Log("n'as pas trouvé de joueur");
-                    isPatroling = true;
+                    target = player.transform;
                 }
             }
-            
         }
     
     
@@ -77,21 +60,15 @@ namespace AI
         {
             Collider[] overlaps = new Collider[100];
             int count = Physics.OverlapSphereNonAlloc(checkingObject.position, maxRadius, overlaps);
-            Debug.Log("test1");
-
+            
             for (int i = 0; i < count + 1; i++)
             {
-
                 if (i < overlaps.Length && overlaps[i] != null)
                 {
-
                     if (overlaps[i].transform == target)
                     {
-
                         Vector3 directionBetween = (target.position - checkingObject.position).normalized;
                         directionBetween.y *= 0;
-                        Debug.Log("test2");
-
                         float angle = Vector3.Angle(checkingObject.forward, directionBetween);
 
                         if (angle <= maxAngle)
