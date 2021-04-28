@@ -6,7 +6,7 @@ namespace AI
     public class FOVDetection : MonoBehaviour
     {
         public bool isPatroling;
-        private Transform _player;
+        private GameObject[] _players;
         public float maxAngle;
         public float maxRadius;
 
@@ -20,13 +20,19 @@ namespace AI
                 return;
             }
             isPatroling = true;
-            _player= GameObject.FindGameObjectWithTag("Player").transform;
+            _players = GameObject.FindGameObjectsWithTag("Player");
         }
 
         // Update is called once per frame
         void Update()
         {
-            _isInFov = inFOV(transform, _player, maxAngle, maxRadius);
+            _isInFov = false;
+            foreach (GameObject player in _players)
+            {
+                if (inFOV(transform, player.transform, maxAngle, maxRadius))
+                    _isInFov = true;
+            }
+            
             if (_isInFov)
             {
                 isPatroling = false;
@@ -39,7 +45,7 @@ namespace AI
     
     
     
-        private void OnDrawGizmos()
+        /*private void OnDrawGizmos()
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, maxRadius);
@@ -59,9 +65,7 @@ namespace AI
 
             Gizmos.color = Color.black;
             Gizmos.DrawRay(transform.position, transform.forward * maxRadius);
-
-
-        }
+        }*/
         public static bool inFOV(Transform checkingObject, Transform target, float maxAngle, float maxRadius)
         {
 
