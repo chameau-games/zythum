@@ -191,11 +191,13 @@ namespace Menu
         public void OnSelectInputText()
         {
             addressInputText.transform.Find("Text Area/Placeholder").gameObject.SetActive(false);
+            addressInputText.transform.Find("Text Area/Text").GetComponent<TMP_Text>().colorGradient = new VertexGradient(Color.white);
         }
     
         public void OnDeselectInputText()
         {
             addressInputText.transform.Find("Text Area/Placeholder").gameObject.SetActive(true);
+            addressInputText.transform.Find("Text Area/Text").GetComponent<TMP_Text>().colorGradient = new VertexGradient(new Color(46,46,46));
         }
 
         public void OnEditInputText()
