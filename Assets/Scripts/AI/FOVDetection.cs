@@ -9,6 +9,7 @@ namespace AI
         private GameObject[] _players;
         public float maxAngle;
         public float maxRadius;
+        public Transform target;
 
         private bool _isInFov = false;
         // Start is called before the first frame update
@@ -35,12 +36,20 @@ namespace AI
             
             if (_isInFov)
             {
-                isPatroling = false;
+                _isInFov = inFOV(transform,p.transform , maxAngle, maxRadius);
+                if (_isInFov)
+                {
+                    Debug.Log("a trouvé un joueur");
+                    isPatroling = false;
+                    target = p.transform;
+                }
+                else
+                {
+                    Debug.Log("n'as pas trouvé de joueur");
+                    isPatroling = true;
+                }
             }
-            else
-            {
-                isPatroling = true;
-            }
+            
         }
     
     
@@ -61,16 +70,14 @@ namespace AI
                 Gizmos.color = Color.red;
             else
                 Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, (_player.position - transform.position).normalized * maxRadius);
-
             Gizmos.color = Color.black;
             Gizmos.DrawRay(transform.position, transform.forward * maxRadius);
         }*/
         public static bool inFOV(Transform checkingObject, Transform target, float maxAngle, float maxRadius)
         {
-
-            Collider[] overlaps = new Collider[10];
+            Collider[] overlaps = new Collider[100];
             int count = Physics.OverlapSphereNonAlloc(checkingObject.position, maxRadius, overlaps);
+            Debug.Log("test1");
 
             for (int i = 0; i < count + 1; i++)
             {
@@ -83,6 +90,7 @@ namespace AI
 
                         Vector3 directionBetween = (target.position - checkingObject.position).normalized;
                         directionBetween.y *= 0;
+                        Debug.Log("test2");
 
                         float angle = Vector3.Angle(checkingObject.forward, directionBetween);
 
@@ -94,10 +102,8 @@ namespace AI
 
                             if (Physics.Raycast(ray, out hit, maxRadius))
                             {
-
                                 if (hit.transform == target)
                                     return true;
-
                             }
                         }
                     }

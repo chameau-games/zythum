@@ -13,7 +13,7 @@ namespace AI
         public float startwaittime;
 
         private FOVDetection _fovd;
-        private Transform _player;
+        private GameObject[] _players;
         private int _nextPosition;
         private float _waittime;
         private Animator _animator;
@@ -28,7 +28,7 @@ namespace AI
             }
             _animator=GetComponent<Animator>();
             _fovd = GameObject.FindObjectOfType<FOVDetection>();
-            _player = GameObject.FindGameObjectWithTag("Player").transform;
+            _players = GameObject.FindGameObjectsWithTag("Player");
             setnextposition();
             _waittime = startwaittime;
         }
@@ -36,30 +36,31 @@ namespace AI
         // Update is called once per frame
         void Update()
         {
-            if (_fovd.isPatroling)
+            Debug.Log("update du patrol");
+            if (_fovd.target==null)
             {
                 Patrol();
             }
             else
             {
-                ChasePlayer();
+                ChasePlayer(_fovd.target);
             }
         }
 
-        private void ChasePlayer()
+        private void ChasePlayer(Transform target)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _player.position, speed * Time.deltaTime);
-            transform.LookAt(_player.position);
-            if (Vector3.Distance(transform.position, _player.position) < 1f)
-            {
-                _animator.SetBool("iswalking",false);
-                speed = 0;
-                Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
-                prop.Add("hasWin", false);
-                PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
-                PhotonNetwork.LoadLevel("Gameover");
-            }
 
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+                transform.LookAt(target.position);
+                if (Vector3.Distance(transform.position, target.position) < 1f)
+                {
+                    _animator.SetBool("iswalking",false);
+                    speed = 0;
+                    Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
+                    prop.Add("hasWin", false);
+                    PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
+                    PhotonNetwork.LoadLevel("Gameover");
+                }
         }
 
         void Patrol()
