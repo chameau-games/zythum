@@ -39,6 +39,13 @@ namespace Vivox
             _client.Uninitialize();
         }
 
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                Mute();
+            }
+        }
 
         private void Bind_Login_Callback_Listeners(bool bind, ILoginSession loginSesh)
         {
