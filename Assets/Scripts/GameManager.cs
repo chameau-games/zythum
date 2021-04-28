@@ -4,10 +4,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+    public Transform[] spawnpoints;
+    
     // Start is called before the first frame update
     void Start()
     {
-        PhotonNetwork.Instantiate("Player", new Vector3(0f, 1f, 0f), Quaternion.identity);
+        if(PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Instantiate("Player", spawnpoints[0].position, spawnpoints[0].rotation);
+        else
+            PhotonNetwork.Instantiate("Player", spawnpoints[1].position, spawnpoints[1].rotation);
+
     }
 
     // Update is called once per frame
