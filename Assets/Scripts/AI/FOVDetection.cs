@@ -36,12 +36,12 @@ namespace AI
             
             if (_isInFov)
             {
-                _isInFov = inFOV(transform,p.transform , maxAngle, maxRadius);
+                // _isInFov = inFOV(transform,p.transform , maxAngle, maxRadius);
                 if (_isInFov)
                 {
                     Debug.Log("a trouvé un joueur");
                     isPatroling = false;
-                    target = p.transform;
+                    // target = p.transform;
                 }
                 else
                 {
