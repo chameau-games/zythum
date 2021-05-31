@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mission : MonoBehaviour
+public abstract class Task : MonoBehaviour
 {
     public string name;
     public bool check;
