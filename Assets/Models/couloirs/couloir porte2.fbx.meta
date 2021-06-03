@@ -3,7 +3,67 @@ guid: edae813a6e3bfc44897fa522c05853a4
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lampe
+    second: {fileID: 2100000, guid: a0e65fd3795d63c438199f13bc7febe5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lampe bleue
+    second: {fileID: 2100000, guid: 43698ad99e695894e80f3851def25c42, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lampe jaune
+    second: {fileID: 2100000, guid: 1158e3d124ebc6b4790ed07620622169, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mur
+    second: {fileID: 2100000, guid: 9997ca4756d43b64c93c77a3ff071ca9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plafond
+    second: {fileID: 2100000, guid: b007fa014cd700f4b819264a80e956dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Porte
+    second: {fileID: 2100000, guid: 0cc5986bc501fc54baebc5bcf35007d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Poutre
+    second: {fileID: 2100000, guid: 6212a2301d0ea8e4eb97af6af0881329, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sol
+    second: {fileID: 2100000, guid: 73d964e5720609a4fb9e6095107fc1aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Triangle
+    second: {fileID: 2100000, guid: 5543a062da2869645bfce5e6638c4e9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tuyau
+    second: {fileID: 2100000, guid: ec8eed39be7d12049bceaaa8f992424a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tuyau bleu
+    second: {fileID: 2100000, guid: 1932d5827d4bb5249a1b1a3ad85c5c21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tuyau rouge
+    second: {fileID: 2100000, guid: eb33eba59a7e48944a8ebb036339a5be, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -69,7 +129,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -84,11 +144,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0
