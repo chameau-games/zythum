@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6fc9cdeddc708834cb1de8669c099397
+guid: 7d596a6624973d04c9522df2e54108f7
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -9,11 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Lampe
     second: {fileID: 2100000, guid: a0e65fd3795d63c438199f13bc7febe5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Lampe bleue
-    second: {fileID: 2100000, guid: 43698ad99e695894e80f3851def25c42, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -42,11 +37,6 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Triangle
-    second: {fileID: 2100000, guid: 5543a062da2869645bfce5e6638c4e9c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: Tuyau
     second: {fileID: 2100000, guid: ec8eed39be7d12049bceaaa8f992424a, type: 2}
   - first:
@@ -59,10 +49,15 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Tuyau rouge
     second: {fileID: 2100000, guid: eb33eba59a7e48944a8ebb036339a5be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Verdatre
+    second: {fileID: 2100000, guid: 2b3794e28097dfa48b71375b3737f26f, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
-    materialSearch: 2
+    materialSearch: 1
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

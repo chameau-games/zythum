@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6fc9cdeddc708834cb1de8669c099397
+guid: c205393f39123f24f9bf33b1d6595db0
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -59,10 +59,15 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Tuyau rouge
     second: {fileID: 2100000, guid: eb33eba59a7e48944a8ebb036339a5be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Verdatre
+    second: {fileID: 2100000, guid: 2b3794e28097dfa48b71375b3737f26f, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
-    materialSearch: 2
+    materialSearch: 1
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
