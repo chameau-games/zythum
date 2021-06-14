@@ -1,6 +1,8 @@
-﻿using Photon.Pun;
+﻿using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Random = System.Random;
 
 namespace AI
 {
@@ -8,12 +10,11 @@ namespace AI
     {
         public float speed;
         public Transform[] points;
-        public int position ;
 
         public float startwaittime;
 
         private FOVDetection _fovd;
-        private int _nextPosition;
+        private Transform _nextPosition;
         private float _waittime;
         private Animator _animator;
 
@@ -62,20 +63,16 @@ namespace AI
 
         void Patrol()
         {
-            transform.position = Vector3.MoveTowards(transform.position, points[_nextPosition].position, speed * Time.deltaTime);
-            transform.LookAt(points[_nextPosition].position);
+            transform.position = Vector3.MoveTowards(transform.position, _nextPosition.position, speed * Time.deltaTime);
+            transform.LookAt(_nextPosition.position);
 
 
-            if (Vector3.Distance(transform.position, points[_nextPosition].position) < 0.2f)
+            if (Vector3.Distance(transform.position, _nextPosition.position) < 0.2f)
             {
-                position = _nextPosition;
                 if (_waittime <= 0)
                 {
                     setnextposition();
-                    if (position != _nextPosition)
-                    {
-                        _animator.SetBool("iswalking",true);
-                    }
+                    _animator.SetBool("iswalking", true);
                     _waittime = startwaittime;
                 }
                 else
@@ -85,52 +82,24 @@ namespace AI
                 }
             }
         }
+
+
         void setnextposition()
         {
-            if (position==0)
+            List<Transform> nextpoints =new List<Transform>();
+
+            foreach (var p in points)
             {
-                _nextPosition = Random.Range(0, 2);
-            }
-            if (position == 2)
-            {
-                _nextPosition = Random.Range(1, 5);
-                if (_nextPosition == 4)
+                RaycastHit hit;
+                Debug.DrawRay(transform.position, p.position,Color.red);
+                if (!(Physics.Raycast(transform.position, p.position, out hit)))
                 {
-                    _nextPosition = 6;
+                    nextpoints.Add(p);
                 }
             }
-            if (position == 4)
-            {
-                _nextPosition = Random.Range(3,7);
-                if (_nextPosition == 6)
-                {
-                    _nextPosition = 7;
-                }
-            }
-            if (position == 7)
-            {
-                _nextPosition = Random.Range(6,10);
-                if (_nextPosition == 9)
-                {
-                    _nextPosition = 4;
-                }
-            }
-            if (position == 5|| position == 8)
-            {
-                _nextPosition = Random.Range(position-1,position+1);
-            }
-            if (position == 1 || position == 3)
-            {
-                _nextPosition = Random.Range(position - 1, position + 2);
-            }
-            if (position == 6)
-            {
-                _nextPosition = Random.Range(5,8);
-                if (_nextPosition == 5)
-                {
-                    _nextPosition = 2;
-                }
-            }
+            Random r = new Random();
+            int i = r.Next(nextpoints.Count);
+            _nextPosition = nextpoints[i];
         }
     }
 }
