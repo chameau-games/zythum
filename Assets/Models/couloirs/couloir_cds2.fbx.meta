@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 706125bb46cc6e247bd0df03b0acbff7
+guid: 47bb6ce348dd3bc44a17e6cdcac7e483
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -9,11 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Lampe
     second: {fileID: 2100000, guid: a0e65fd3795d63c438199f13bc7febe5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Lampe bleue
-    second: {fileID: 2100000, guid: 43698ad99e695894e80f3851def25c42, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -39,11 +34,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Sol
     second: {fileID: 2100000, guid: 73d964e5720609a4fb9e6095107fc1aa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Triangle
-    second: {fileID: 2100000, guid: 5543a062da2869645bfce5e6638c4e9c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -96,7 +86,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
