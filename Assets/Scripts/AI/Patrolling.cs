@@ -17,6 +17,7 @@ namespace AI
         private Transform _nextPosition;
         private float _waittime;
         private Animator _animator;
+        private int layerMask;
 
         // Start is called before the first frame update
         void Start()
@@ -30,19 +31,15 @@ namespace AI
             _fovd = GameObject.FindObjectOfType<FOVDetection>();
             setnextposition();
             _waittime = startwaittime;
+            layerMask = 1 << 11;
+            layerMask = ~layerMask;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (_fovd.target==null)
-            {
-                Patrol();
-            }
-            else
-            {
-                ChasePlayer(_fovd.target);
-            }
+            Patrol();
+            
         }
 
         private void ChasePlayer(Transform target)
@@ -65,40 +62,28 @@ namespace AI
         {
             transform.position = Vector3.MoveTowards(transform.position, _nextPosition.position, speed * Time.deltaTime);
             transform.LookAt(_nextPosition.position);
-
-
-            if (Vector3.Distance(transform.position, _nextPosition.position) < 0.2f)
+            
+            if (Vector3.Distance(transform.position, _nextPosition.position) <= 0.2f)
             {
-                if (_waittime <= 0)
-                {
-                    setnextposition();
-                    _animator.SetBool("iswalking", true);
-                    _waittime = startwaittime;
-                }
-                else
-                {
-                    _animator.SetBool("iswalking",false);
-                    _waittime -= Time.deltaTime;
-                }
+                Debug.Log("init setnextpos Patrol()");
+                setnextposition();
             }
         }
-
 
         void setnextposition()
         {
             List<Transform> nextpoints =new List<Transform>();
-
             foreach (var p in points)
             {
                 RaycastHit hit;
-                Debug.DrawRay(transform.position, p.position,Color.red);
-                if (!(Physics.Raycast(transform.position, p.position, out hit)))
+                if (!(Physics.Raycast(transform.position,p.position,out hit,Vector3.Distance(p.position,transform.position),layerMask)))
                 {
+                    Debug.Log("trouvé");
                     nextpoints.Add(p);
                 }
             }
             Random r = new Random();
-            int i = r.Next(nextpoints.Count);
+            int i = r.Next(0,nextpoints.Count);
             _nextPosition = nextpoints[i];
         }
     }
