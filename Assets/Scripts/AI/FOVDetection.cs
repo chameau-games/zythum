@@ -77,7 +77,6 @@ namespace AI
                     {
                         if (hit.collider.transform == target)
                         {
-                            Debug.Log("ici");
                             return true;
                         }
                     }

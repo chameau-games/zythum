@@ -50,11 +50,10 @@ namespace AI
                 guard.SetDestination(target.position);
                 if (Vector3.Distance(transform.position, target.position) < 1f)
                 {
-                    Debug.Log("gameover");
-                    //Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
-                    //prop.Add("hasWin", false);
-                    //PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
-                    //PhotonNetwork.LoadLevel("Gameover");
+                    Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
+                    prop.Add("hasWin", false);
+                    PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
+                    PhotonNetwork.LoadLevel("Gameover");
                     }
             }
 
