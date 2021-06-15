@@ -1,25 +1,30 @@
 ﻿using Photon.Pun;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace AI
 {
     public class FOVDetection : MonoBehaviour
     {
-        public bool isPatroling;
         private GameObject[] _players;
         public float maxAngle;
         public float maxRadius;
-        public Transform target;
+        public LayerMask map;
+        private Transform target;
+        private LayerMask layermask;
         
         // Start is called before the first frame update
         void Start()
         {
+            layermask = 1 << 11;
+            layermask = ~layermask;
             if (!PhotonNetwork.IsMasterClient)
             {
                 enabled = false;
                 return;
             }
-            isPatroling = true;
+
+            target = null;
         }
 
         // Update is called once per frame
@@ -28,14 +33,21 @@ namespace AI
             _players = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject player in _players)
             {
-                if (inFOV(transform, player.transform, maxAngle, maxRadius))
+                if (checkingFOV(player.transform, maxAngle, maxRadius))
                 {
                     target = player.transform;
                 }
+                else
+                {
+                    target = null;
+                }
             }
         }
-    
-    
+
+        public Transform GetTarget()
+        {
+            return target;
+        }
     
         /*private void OnDrawGizmos()
         {
@@ -56,36 +68,26 @@ namespace AI
             Gizmos.color = Color.black;
             Gizmos.DrawRay(transform.position, transform.forward * maxRadius);
         }*/
-        public static bool inFOV(Transform checkingObject, Transform target, float maxAngle, float maxRadius)
+        private bool checkingFOV(Transform target, float maxAngle, float maxRadius)
         {
-            Collider[] overlaps = new Collider[100];
-            int count = Physics.OverlapSphereNonAlloc(checkingObject.position, maxRadius, overlaps);
-            
-            for (int i = 0; i < count + 1; i++)
+            if (Physics.CheckSphere(transform.position,maxRadius,map))
             {
-                if (i < overlaps.Length && overlaps[i] != null)
+                Vector3 targetDir = target.position - transform.position;
+                float angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
+                if (angleToPlayer >= maxAngle * (-1) && angleToPlayer <= maxAngle)
                 {
-                    if (overlaps[i].transform == target)
+                    RaycastHit hit;
+                    if (Physics.Raycast(transform.position, target.position, out hit,
+                        Vector3.Distance(transform.position, target.position), layermask))
                     {
-                        Vector3 directionBetween = (target.position - checkingObject.position).normalized;
-                        directionBetween.y *= 0;
-                        float angle = Vector3.Angle(checkingObject.forward, directionBetween);
-
-                        if (angle <= maxAngle)
+                        if (hit.collider.transform == target.transform)
                         {
-
-                            Ray ray = new Ray(checkingObject.position, target.position - checkingObject.position);
-                            RaycastHit hit;
-
-                            if (Physics.Raycast(ray, out hit, maxRadius))
-                            {
-                                if (hit.transform == target)
-                                    return true;
-                            }
+                            return true;
                         }
                     }
                 }
             }
+
             return false;
         }
     }
