@@ -45,7 +45,7 @@ namespace Player
         {
             foreach (ContactPoint contact in other.contacts)
             {
-                if (contact.otherCollider.gameObject.layer == 8)
+                if (contact.otherCollider.gameObject.layer == 14)
                     _isGrounded = true;
             }
         }
