@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="language" content="fr">
+
+    <title>Chameau Games</title>
+    <link rel="icon" type="image/png" href="images/ChameauGames_logo3.png">
+    <meta name="description" content="Chameau est un studio français de développement, dédition et de distribution de jeux vidéo, créée en janvier 2021 par 4 amis.">
+
+    <meta property="og:title" content="Chameau Games">
+    <meta property="og:description" content="Chameau est un studio français de développement, dédition et de distribution de jeux vidéo, créée en janvier 2021 par 4 amis.">
+    <meta property="og:url" content="https://chameau-games.com/">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="images/ChameauGames_logo3.png.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Chameau Games">
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+
+    <link rel="canonical" href="https://chameau-games.com/">
+
+    <meta name="copyright" content="chameau-games.com © 2021"/>
+  </head>
+  <body>
+    <header>
+      <div id="cover">
+        <a href="#about"><img id="godown"src="images/arrow_down.png" alt="flèche"></a>
+        <a href="https://chameau-games.com/"><img id="cover-logo" src="images/ChameauGames_logo.png" alt="Logotype Chameau Games"></a>
+      </div>
+    </header>
+    <main class="main">
+      <nav id="nav-global">
+        <ul id="nav-list">
+          <li class="nav-element"><a class="nav-link" href="#projects">NOS PROJETS</a></li>
+          <li class="nav-element"><a class="nav-link" href="#team">L'ÉQUIPE</a></li>
+          <li class="nav-element"><a class="nav-link" href="#contact">NOUS CONTACTER</a></li>
+        </ul>
+      </nav>
+
+      <nav id="nav-logo">
+        <a href="#cover"><img class="chameau-logo" src="images/ChameauGames_logo3.png" alt="Logotype Chameau"></a>
+      </nav>
+
+      <div id="about">
+        <div id="container-about">
+          <div id="about-img">
+            <a href="#cover"><img id="small-logo" src="images/ChameauGames_logo2.png" alt="Small Logotype Chameau Games"></a>
+          </div>
+          <div id="about-text">
+            <h3>Bienvenue chez Chameau Games</h3>
+            <h4>
+              Chameau est un studio français de développement, dédition et de distribution de jeux vidéo, créée en janvier 2021 par 4 amis.
+            </h4>
+          </div>
+        </div>
+      </div>
+
+      <div id="projects">
+        <h1 class="title">NOS PROJETS</h1>
+        <div class="zythum">
+          <a href="https://zythum.chameau-games.com"><img class="card-game" id="zythum-icon" src="images/iconZythumRed.png" alt="Icon Zythum" onmouseover="ongame(0)" onmouseout="outgame(0)"></a>
+          <div class="card-game" id="zythum-txt" onmouseover="ongame(0)" onmouseout="outgame(0)">
+            <p>Zythum</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="team">
+        <h1 class="title">L'ÉQUIPE</h1>
+        <div id="bubble-left">
+          <div class="card-member" onmouseover="onmember(0)" onmouseout="outmember(0)">
+            <h1>Léo Arpin</h1>
+            <h2>Chef de projet, chameau</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at purus neque. Integer a nisl hendrerit, pretium ligula in, finibus metus. Integer mauris mi, facilisis quis ante sed.
+            </p>
+          </div>
+          <br>
+          <div class="card-member" onmouseover="onmember(1)" onmouseout="outmember(1)">
+            <h1>Nathan Goetschy</h1>
+            <h2>chameau</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at purus neque. Integer a nisl hendrerit, pretium ligula in, finibus metus. Integer mauris mi, facilisis quis ante sed.
+            </p>
+          </div>
+        </div>
+        <div id="bubble">
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <img class="team-member" src="images/team/leoarpin.jpg" alt="Léo Arpin" onmouseover="onmember(0)" onmouseout="outmember(0)">
+                </td>
+                <td>
+                  <img class="team-member" src="images/team/adrienguinard.jpg" alt="Adrien Guinard" onmouseover="onmember(2)" onmouseout="outmember(2)">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="team-member" src="images/team/nathangoetschy.jpg" alt="Nathan Goetschy" onmouseover="onmember(1)" onmouseout="outmember(1)">
+                </td>
+                <td>
+                  <img class="team-member" src="images/team/remijeulin.jpg" alt="Rémi Jeulin" onmouseover="onmember(3)" onmouseout="outmember(3)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="bubble-right">
+          <div class="card-member" onmouseover="onmember(2)" onmouseout="outmember(2)">
+            <h1>Adrien Guinard</h1>
+            <h2>chameau</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at purus neque. Integer a nisl hendrerit, pretium ligula in, finibus metus. Integer mauris mi, facilisis quis ante sed.
+            </p>
+          </div>
+          <br>
+          <div class="card-member" onmouseover="onmember(3)" onmouseout="outmember(3)">
+            <h1>Rémi Jeulin</h1>
+            <h2>chameau</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at purus neque. Integer a nisl hendrerit, pretium ligula in, finibus metus. Integer mauris mi, facilisis quis ante sed.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="contact">
+        <h1 class="title">NOUS CONTACTER</h1>
+        <div class="row input-container">
+          <hr>
+          <div class="col-xs-12">
+            <div class="styled-input wide">
+              <input type="text" required>
+              <label>Nom</label>
+            </div>
+          </div>
+          <hr>
+          <div class="col-md-6 col-sm-12">
+            <div class="styled-input wide">
+              <input type="text" required>
+              <label>Email</label>
+            </div>
+          </div>
+          <hr>
+          <div class="col-xs-12">
+            <div class="styled-input wide">
+              <textarea required></textarea>
+              <label>Message</label>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="btn-lrg submit-btn">Envoyer</div>
+          </div>
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+      <button class="content">
+        <span style="opacity: 1; transform: translate(0px, 0px);">
+          ↑
+        </span>
+      </button>
+      <div class="content">
+        <span style="opacity: 1; transform: translate(0px, 0px);">
+          Chameau Games © 2021 - Tous droits réservés.
+        </span>
+      </div>
+      <button class="content">
+        <span style="opacity: 1; transform: translate(0px, 0px);">
+          ↑
+        </span>
+      </button>
+    </footer>
+
+  </body>
+</html>

@@ -1,20 +1,19 @@
-﻿using Photon.Pun;
+﻿using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
+using UnityEngine.AI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Random = System.Random;
 
 namespace AI
 {
     public class Patrolling : MonoBehaviour
     {
-        public float speed;
         public Transform[] points;
-        public int position ;
-
-        public float startwaittime;
 
         private FOVDetection _fovd;
-        private int _nextPosition;
-        private float _waittime;
+        public NavMeshAgent guard;
+        private Transform _nextPosition;
         private Animator _animator;
 
         // Start is called before the first frame update
@@ -28,109 +27,54 @@ namespace AI
             _animator=GetComponent<Animator>();
             _fovd = GameObject.FindObjectOfType<FOVDetection>();
             setnextposition();
-            _waittime = startwaittime;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (_fovd.target==null)
+            if(_fovd.GetTarget() == null)
             {
+                _animator.SetBool("iswalking",true);
                 Patrol();
             }
             else
             {
-                ChasePlayer(_fovd.target);
+                ChasePlayer(_fovd.GetTarget());
             }
+            
         }
 
         private void ChasePlayer(Transform target)
-        {
-            _animator.SetBool("iswalking",true);
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            {
+                _animator.SetBool("iswalking",true);
+                guard.SetDestination(target.position);
                 transform.LookAt(target.position);
                 if (Vector3.Distance(transform.position, target.position) < 1f)
                 {
                     _animator.SetBool("iswalking",false);
-                    speed = 0;
                     Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
                     prop.Add("hasWin", false);
                     PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
                     PhotonNetwork.LoadLevel("Gameover");
-                }
-        }
+                    }
+            }
 
         void Patrol()
         {
-            transform.position = Vector3.MoveTowards(transform.position, points[_nextPosition].position, speed * Time.deltaTime);
-            transform.LookAt(points[_nextPosition].position);
-
-
-            if (Vector3.Distance(transform.position, points[_nextPosition].position) < 0.2f)
+            guard.SetDestination(_nextPosition.position);
+            transform.LookAt(transform.forward);
+            
+            if (Vector3.Distance(transform.position, _nextPosition.position) <= 1f)
             {
-                position = _nextPosition;
-                if (_waittime <= 0)
-                {
-                    setnextposition();
-                    if (position != _nextPosition)
-                    {
-                        _animator.SetBool("iswalking",true);
-                    }
-                    _waittime = startwaittime;
-                }
-                else
-                {
-                    _animator.SetBool("iswalking",false);
-                    _waittime -= Time.deltaTime;
-                }
+                setnextposition();
             }
         }
+
         void setnextposition()
         {
-            if (position==0)
-            {
-                _nextPosition = Random.Range(0, 2);
-            }
-            if (position == 2)
-            {
-                _nextPosition = Random.Range(1, 5);
-                if (_nextPosition == 4)
-                {
-                    _nextPosition = 6;
-                }
-            }
-            if (position == 4)
-            {
-                _nextPosition = Random.Range(3,7);
-                if (_nextPosition == 6)
-                {
-                    _nextPosition = 7;
-                }
-            }
-            if (position == 7)
-            {
-                _nextPosition = Random.Range(6,10);
-                if (_nextPosition == 9)
-                {
-                    _nextPosition = 4;
-                }
-            }
-            if (position == 5|| position == 8)
-            {
-                _nextPosition = Random.Range(position-1,position+1);
-            }
-            if (position == 1 || position == 3)
-            {
-                _nextPosition = Random.Range(position - 1, position + 2);
-            }
-            if (position == 6)
-            {
-                _nextPosition = Random.Range(5,8);
-                if (_nextPosition == 5)
-                {
-                    _nextPosition = 2;
-                }
-            }
+            Random r = new Random();
+            int i = r.Next(0,points.Length);
+            _nextPosition = points[i];
         }
     }
 }
