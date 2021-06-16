@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: 47bb6ce348dd3bc44a17e6cdcac7e483
+guid: 134103a6b35c249499766470db88b288
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Avanc\xE9e bureau"
+    second: {fileID: 2100000, guid: 2db568b6457154514a1c2bd46db5d39b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bureau
+    second: {fileID: 2100000, guid: 97650a116a6fe469a823c82c10aaf0e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Grille m\xE9tallique"
+    second: {fileID: 2100000, guid: 8c973835d7df44dd8893fbc63c7ad4bd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -12,13 +27,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Lampe jaune
-    second: {fileID: 2100000, guid: 1158e3d124ebc6b4790ed07620622169, type: 2}
+      name: Mur
+    second: {fileID: 2100000, guid: 9997ca4756d43b64c93c77a3ff071ca9, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Mur
-    second: {fileID: 2100000, guid: 9997ca4756d43b64c93c77a3ff071ca9, type: 2}
+      name: Noir
+    second: {fileID: 2100000, guid: 49a35a332c69244919fc7b73ded186f7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -27,8 +42,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Poutre
-    second: {fileID: 2100000, guid: 6212a2301d0ea8e4eb97af6af0881329, type: 2}
+      name: Rambarde
+    second: {fileID: 2100000, guid: ee3ffeed0d2c1453a980693b3f5bfbab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rouge
+    second: {fileID: 2100000, guid: d152de2c52aa54d30b86c1acfda3935e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -37,23 +57,38 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: "Support \xE9cran"
+    second: {fileID: 2100000, guid: 59bf8508dcb1b47cdae627fd2fa90682, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Tuyau
-    second: {fileID: 2100000, guid: ec8eed39be7d12049bceaaa8f992424a, type: 2}
+    second: {fileID: 2100000, guid: 81cf837a7b9b0469588b7d0653f050fe, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Tuyau bleu
-    second: {fileID: 2100000, guid: 1932d5827d4bb5249a1b1a3ad85c5c21, type: 2}
+      name: Vert
+    second: {fileID: 2100000, guid: 4d7396b350cdf4206a715542e4937455, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Tuyau rouge
-    second: {fileID: 2100000, guid: eb33eba59a7e48944a8ebb036339a5be, type: 2}
+      name: bande noire
+    second: {fileID: 2100000, guid: 7ccd3b2474b73495c80f74f4cd3b74d9, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Verdatre
-    second: {fileID: 2100000, guid: 2b3794e28097dfa48b71375b3737f26f, type: 2}
+      name: blanc
+    second: {fileID: 2100000, guid: 5673ebb7423ac45c89b545738d74bcb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: button
+    second: {fileID: 2100000, guid: f2b55b5c3a28f44fab2d6d0bb2471500, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\xE9cran"
+    second: {fileID: 2100000, guid: 68079fccd5a9d4cf08918dacad8209c6, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -95,7 +130,7 @@ ModelImporter:
     importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -119,7 +154,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -134,11 +169,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0
