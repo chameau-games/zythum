@@ -37,10 +37,6 @@ namespace AI
                 {
                     target = player.transform;
                 }
-                else
-                {
-                    target = null;
-                }
             }
         }
 
@@ -70,25 +66,24 @@ namespace AI
         }*/
         private bool checkingFOV(Transform target, float maxAngle, float maxRadius)
         {
-            if (Physics.CheckSphere(transform.position,maxRadius,map))
+            Collider[] cols = Physics.OverlapSphere(transform.position, maxRadius, layermask);
+            foreach (Collider col in cols)
             {
-                Vector3 targetDir = target.position - transform.position;
-                float angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
-                if (angleToPlayer >= maxAngle * (-1) && angleToPlayer <= maxAngle)
+                if (col.transform == target)
                 {
                     RaycastHit hit;
                     if (Physics.Raycast(transform.position, target.position, out hit,
                         Vector3.Distance(transform.position, target.position), layermask))
                     {
-                        if (hit.collider.transform == target.transform)
+                        if (hit.collider.transform == target)
                         {
                             return true;
                         }
                     }
                 }
             }
-
             return false;
         }
     }
+    
 }
