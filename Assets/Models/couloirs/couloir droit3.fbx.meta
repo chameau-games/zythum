@@ -118,7 +118,7 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 8
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 40
+    secondaryUVPackMargin: 42
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
