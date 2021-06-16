@@ -12,6 +12,7 @@ namespace AI
         public Transform[] points;
 
         private FOVDetection _fovd;
+        public AudioSource audio;
         public NavMeshAgent guard;
         private Transform _nextPosition;
         private Animator _animator;
