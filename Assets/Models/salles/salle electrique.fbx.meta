@@ -1,27 +1,59 @@
 fileFormatVersion: 2
-guid: cdbaad9ba1e97d44ebeb512d63c62302
+guid: efff06917514ba14c87b5260e25a9ff9
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable:
-  - first:
-      74: -4760046816382871129
-    second: porte|ouverture
+  internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Bois
-    second: {fileID: 2100000, guid: dee46b5a230e161489a66986f0dbe7c1, type: 2}
+      name: Bobine
+    second: {fileID: 2100000, guid: 7a534c6093a08b6499526bcb12c768be, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Chaine
-    second: {fileID: 2100000, guid: 7da55d14f32bfeb45863019f7147edf3, type: 2}
+      name: "Bornes de contr\xF4le"
+    second: {fileID: 2100000, guid: c075d890b746ef54082e851963eb94c7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Grille
-    second: {fileID: 2100000, guid: ac4c0df98957f5f4bb937fe20e81eae5, type: 2}
+      name: Bouteille gaz rouge
+    second: {fileID: 2100000, guid: b62728e33abd8ae419276515a51c6c30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Bouton rouge \xE9teint"
+    second: {fileID: 2100000, guid: 32b71712fc9be1547bbfb04d9d432349, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Bouton vert \xE9teint"
+    second: {fileID: 2100000, guid: 7de8b9e9b07b5f548ad9dfaa13ac111e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Caisse
+    second: {fileID: 2100000, guid: 7533f08ab7c4c9b4cb364b3aec4764c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chiffre
+    second: {fileID: 2100000, guid: 828e0c212f1f02248a739aa99b8dfa1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gris clair
+    second: {fileID: 2100000, guid: a6cee9710bf2cbb4dbb690e49c3d732e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Jaune orang\xE9"
+    second: {fileID: 2100000, guid: 974316f29593cdf40aa41628e8734056, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Jaune sale
+    second: {fileID: 2100000, guid: 6ecb5ee8d4907da4997431664e660f04, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -30,8 +62,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Lampe jaune
-    second: {fileID: 2100000, guid: 1158e3d124ebc6b4790ed07620622169, type: 2}
+      name: "Lampe salle \xE9lectrique"
+    second: {fileID: 2100000, guid: aaef58231cae56e478a15f95b0296ddd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal gris brillant
+    second: {fileID: 2100000, guid: 9ea1039e344efd548bb75f2768fe28c5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -40,13 +77,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: "M\xE9tal blanc"
+    second: {fileID: 2100000, guid: 3608c1e47b465ad48b724a1edf4f7b87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "M\xE9tal noir"
+    second: {fileID: 2100000, guid: 939cff1aed9b54a4f86860476a2386af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Plafond
     second: {fileID: 2100000, guid: b007fa014cd700f4b819264a80e956dd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Plastique noir
+    second: {fileID: 2100000, guid: 3c133d34ea12287419e636e811f4b9ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Sol
     second: {fileID: 2100000, guid: 73d964e5720609a4fb9e6095107fc1aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tuyau
+    second: {fileID: 2100000, guid: ec8eed39be7d12049bceaaa8f992424a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -112,7 +169,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -127,11 +184,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0
