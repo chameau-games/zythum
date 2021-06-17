@@ -12,6 +12,7 @@ namespace AI
         public Transform[] points;
 
         private FOVDetection _fovd;
+        public AudioSource audio;
         public NavMeshAgent guard;
         private Transform _nextPosition;
         private Animator _animator;
@@ -32,9 +33,9 @@ namespace AI
         // Update is called once per frame
         void Update()
         {
+            _animator.SetBool("iswalking",true);
             if(_fovd.GetTarget() == null)
             {
-                _animator.SetBool("iswalking",true);
                 Patrol();
             }
             else
@@ -48,10 +49,8 @@ namespace AI
             {
                 _animator.SetBool("iswalking",true);
                 guard.SetDestination(target.position);
-                transform.LookAt(target.position);
                 if (Vector3.Distance(transform.position, target.position) < 1f)
                 {
-                    _animator.SetBool("iswalking",false);
                     Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
                     prop.Add("hasWin", false);
                     PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
@@ -62,8 +61,7 @@ namespace AI
         void Patrol()
         {
             guard.SetDestination(_nextPosition.position);
-            transform.LookAt(transform.forward);
-            
+
             if (Vector3.Distance(transform.position, _nextPosition.position) <= 1f)
             {
                 setnextposition();
