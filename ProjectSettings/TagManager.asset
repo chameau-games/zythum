@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - guard layer
+  - bouton sdc
   layers:
   - Default
   - TransparentFX
@@ -22,7 +22,6 @@ TagManager:
   - Players
   - Sol
   - Map
-  - 
   - 
   - 
   - 

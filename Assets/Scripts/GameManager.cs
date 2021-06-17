@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
 
     public Transform[] spawnpoints;
     public GameObject grille;
+    public GameObject boutonQuiOuvreLaPorteDeLaCellule;
     
     // Start is called before the first frame update
     void Start()
@@ -14,7 +18,8 @@ public class GameManager : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.Instantiate("Player", spawnpoints[0].position, spawnpoints[0].rotation);
-            StartCoroutine(OpenDoorIn5Seconds());
+            GameObject[] tousLesBoutonsSDC = GameObject.FindGameObjectsWithTag("bouton sdc");
+            boutonQuiOuvreLaPorteDeLaCellule = tousLesBoutonsSDC[new Random().Next(tousLesBoutonsSDC.Length)];
         }
         else
             PhotonNetwork.Instantiate("Player", spawnpoints[1].position, spawnpoints[1].rotation);
@@ -22,12 +27,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    IEnumerator OpenDoorIn5Seconds()
+    public void OuvrirGrille()
     {
-        yield return new WaitForSeconds(5);
-        
-        grille.GetComponent<Animator>().SetBool("isOpening", true);
-        
+        grille.GetComponent<Animator>().SetBool("open", true);
     }
 
 }

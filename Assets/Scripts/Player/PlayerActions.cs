@@ -7,18 +7,21 @@ namespace Player
 {
     public class PlayerActions : MonoBehaviour
     {
+        private int code;
         public float maxReach;
         private HUD hud;
         private Transform spawnpointSdc;
 
         private Transform aerationVent;
 
+        private GameManager gameManager;
+
         private void Start()
         {
-            Debug.Log("a");
             hud = GameObject.Find("HUD").GetComponent<HUD>();
             spawnpointSdc = GameObject.Find("Spawnpoint salle de contrôle").transform;
             aerationVent = GameObject.Find("aerationVent").transform;
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
 
         // Update is called once per frame
@@ -40,6 +43,19 @@ namespace Player
                     else
                     {
                         hud.SetInformationText("Appuie sur U pour passer dans la bouche d'aération");
+                        hud.ShowText();
+                    }
+                }
+                else if (PhotonNetwork.IsMasterClient &&
+                         hit.transform == gameManager.boutonQuiOuvreLaPorteDeLaCellule.transform)
+                {
+                    if (Input.GetKey(KeyCode.U))
+                    {
+                        gameManager.OuvrirGrille();
+                    }
+                    else
+                    {
+                        hud.SetInformationText("Appuie sur U pour ouvrir la porte de la cellule de l'infiltré");
                         hud.ShowText();
                     }
                 }
