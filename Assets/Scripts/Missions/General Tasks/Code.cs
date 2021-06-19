@@ -9,6 +9,7 @@ using Random = System.Random;
 
 public class Code : MonoBehaviour
 {
+    public GameObject playerCam;
     public bool isLocked = true;
     public string input = "";
     public TMP_Text code = null;
