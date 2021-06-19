@@ -8825,7 +8825,8 @@ MonoBehaviour:
   spawnpoints:
   - {fileID: 2042917408}
   - {fileID: 529949746}
-  grille: {fileID: 0}
+  grille: {fileID: 633987594}
+  boutonQuiOuvreLaPorteDeLaCellule: {fileID: 0}
 --- !u!4 &223974228
 Transform:
   m_ObjectHideFlags: 0
@@ -10840,7 +10841,7 @@ PrefabInstance:
     - target: {fileID: -2113670006983759465, guid: cdbaad9ba1e97d44ebeb512d63c62302,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2045257923548263128, guid: cdbaad9ba1e97d44ebeb512d63c62302,
         type: 3}
@@ -11137,6 +11138,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: cdbaad9ba1e97d44ebeb512d63c62302,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0212783bf79dc654ca748a039afd51f9, type: 2}
     - target: {fileID: 6014503084441653313, guid: cdbaad9ba1e97d44ebeb512d63c62302,
         type: 3}
       propertyPath: m_Layer
@@ -11166,6 +11172,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797491763413892411, guid: cdbaad9ba1e97d44ebeb512d63c62302,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797491763413892411, guid: cdbaad9ba1e97d44ebeb512d63c62302,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797491763413892411, guid: cdbaad9ba1e97d44ebeb512d63c62302,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797491763413892411, guid: cdbaad9ba1e97d44ebeb512d63c62302,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797491763413892411, guid: cdbaad9ba1e97d44ebeb512d63c62302,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98021
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797491763413892411, guid: cdbaad9ba1e97d44ebeb512d63c62302,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6919683763462532184, guid: cdbaad9ba1e97d44ebeb512d63c62302,
         type: 3}
@@ -25206,6 +25242,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -8383124558419344257, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -8153468022190502949, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
@@ -25241,6 +25282,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -7136622550182105865, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -7029948723529949830, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
@@ -25250,6 +25296,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -6943276415157153233, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -6763858364670572316, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25266,60 +25317,120 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -6577237425059042219, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -6430913737076792145, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -6430913737076792145, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -6312020576829762642, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -6312020576829762642, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -6193360207736892916, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -6193360207736892916, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -6151688812392996543, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -6151688812392996543, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -6064153176478479626, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -6064153176478479626, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -5749183576951152534, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -5749183576951152534, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -5722315222512314903, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -5722315222512314903, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -5568371526223589888, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -5546747315237514756, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -5546747315237514756, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -5063223942988036812, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -5063223942988036812, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -4923621884956650715, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -4923621884956650715, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -4906838889796845047, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25331,6 +25442,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -4636300777304409883, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -3821253740895256905, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
@@ -25340,6 +25456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -3798597711559607027, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -3778644264426962316, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25351,20 +25472,40 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -3641000652193603279, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -3477458294799913631, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -3477458294799913631, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -3100686136978186089, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -3100686136978186089, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -2914413575082383075, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -2914413575082383075, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -2764512629625626004, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25391,15 +25532,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -1727348531506677991, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -1606057615522382512, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -1606057615522382512, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
+    - target: {fileID: -1600542680823235302, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -1600542680823235302, guid: 134103a6b35c249499766470db88b288,
         type: 3}
-      propertyPath: m_Layer
-      value: 15
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: -1599826595754709761, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25426,6 +25582,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -284640640695791788, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: -208595431880416365, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
@@ -25441,6 +25602,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 225400215010513126, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 281855664364225751, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
@@ -25451,15 +25617,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 377145664466182588, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 460137046955217605, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 460137046955217605, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
+    - target: {fileID: 769409822697918629, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 769409822697918629, guid: 134103a6b35c249499766470db88b288,
         type: 3}
-      propertyPath: m_Layer
-      value: 15
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25481,30 +25662,60 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1235325404441655284, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 1619035203956873500, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619035203956873500, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: 1805940778159003073, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1805940778159003073, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 2800250516343163423, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800250516343163423, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: 2971542036940430761, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2971542036940430761, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 3849762623622064168, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849762623622064168, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: 3893722416717529905, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25516,10 +25727,20 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4036632075489809298, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 4214726985332892257, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214726985332892257, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: 4306643203051859313, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25551,6 +25772,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4926001703790802853, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 5148817236446094103, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
@@ -25560,6 +25786,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245042011116262203, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: 5394693769120690257, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25571,6 +25802,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 5536861098173082815, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 5619302609615435187, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
@@ -25580,6 +25816,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934129722972032481, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: 6507901977716847365, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25591,25 +25832,50 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 6512510688612296998, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 6919683763462532184, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6919683763462532184, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: 7052025465689282730, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 7052025465689282730, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
     - target: {fileID: 7717331358011810647, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717331358011810647, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833249854982934595, guid: 134103a6b35c249499766470db88b288,
         type: 3}
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7833249854982934595, guid: 134103a6b35c249499766470db88b288,
         type: 3}
-      propertyPath: m_Layer
-      value: 15
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     - target: {fileID: 8009987137999418058, guid: 134103a6b35c249499766470db88b288,
         type: 3}
@@ -25635,6 +25901,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700725330082129686, guid: 134103a6b35c249499766470db88b288,
+        type: 3}
+      propertyPath: m_TagString
+      value: bouton sdc
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134103a6b35c249499766470db88b288, type: 3}
@@ -26219,6 +26490,92 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &633987594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cdbaad9ba1e97d44ebeb512d63c62302,
+    type: 3}
+  m_PrefabInstance: {fileID: 267298232}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &633987595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633987594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &633987596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633987594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 633987595}
+  - {fileID: 633987597}
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &633987597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633987594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: open
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
+--- !u!95 &633987598
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633987594}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 0c07da09e88b78a4d820a2b4f5f9231a, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0212783bf79dc654ca748a039afd51f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &636270101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40318,7 +40675,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1115773177}
   - component: {fileID: 1115773176}
-  - component: {fileID: 1115773175}
   m_Layer: 0
   m_Name: Radar Camera
   m_TagString: Untagged
@@ -40326,14 +40682,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1115773175
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115773174}
-  m_Enabled: 1
 --- !u!20 &1115773176
 Camera:
   m_ObjectHideFlags: 0
@@ -59153,7 +59501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972620267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.342, y: 0.465, z: -16.685}
+  m_LocalPosition: {x: -3.342, y: 0.34, z: -16.685}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -64092,7 +64440,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -64148,7 +64496,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084374787}
-  m_LocalRotation: {x: 0.7319088, y: -0, z: -0, w: 0.6814026}
+  m_LocalRotation: {x: -0.608778, y: 0.27867547, z: -0.7024212, w: -0.2415241}
   m_LocalPosition: {x: -5.949361, y: 10.34, z: 0.8549248}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
