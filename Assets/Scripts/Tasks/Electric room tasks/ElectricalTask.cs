@@ -34,7 +34,6 @@ public class ElectricalTask : MonoBehaviour
     
     void Start()
     {
-        animator = GetComponent<Animator>();
         System.Random rnd = new System.Random();
         index = rnd.Next(possibilities.Length);
         pointer1.transform.Rotate(possibilities[index][1], 0, 0);
