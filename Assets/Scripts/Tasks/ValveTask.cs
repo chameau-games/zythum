@@ -69,7 +69,7 @@ namespace Tasks
                     if (valvesDejaTournees.Count == valvesATourner.Count)
                     {
                         //mission réussie
-                        GameObject.Find("ecran mission").GetComponent<ClasseDeNathDeLecranMission>().MissionValveFinie();
+                        //GameObject.Find("ecran mission").GetComponent<ClasseDeNathDeLecranMission>().MissionValveFinie();
                     }
                 }
                 else if (!valvesDejaTournees.Contains(valveTransform.gameObject))
