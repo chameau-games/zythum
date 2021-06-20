@@ -1,11 +1,11 @@
-﻿namespace Tasks
-{
-    public abstract class Task
-    {
-        private string _description;
+﻿using UnityEngine;
 
-        public abstract void OnStart();
-        public abstract void OnFinished();
+namespace Tasks
+{
+    public abstract class Task : MonoBehaviour
+    {
+        public string nom;
+        
         
     }
 }

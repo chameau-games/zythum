@@ -1,6 +1,7 @@
 ﻿using System;
 using Menu;
 using Photon.Pun;
+using Tasks;
 using UnityEngine;
 
 namespace Player
@@ -56,6 +57,18 @@ namespace Player
                     else
                     {
                         hud.SetInformationText("Appuie sur U pour ouvrir la porte de la cellule de l'infiltré");
+                        hud.ShowText();
+                    }
+                }
+                else if (!PhotonNetwork.IsMasterClient && hit.transform.CompareTag("valves"))
+                {
+                    if (Input.GetKey(KeyCode.U))
+                    {
+                        GameObject.Find("salle eau").GetComponent<ValveTask>().TurnValve(hit.transform);
+                    }
+                    else
+                    {
+                        hud.SetInformationText("Appuie sur U pour actionner la valve");
                         hud.ShowText();
                     }
                 }
