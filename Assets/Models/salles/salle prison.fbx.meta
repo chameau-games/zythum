@@ -28,7 +28,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Lampe jaune
-    second: {fileID: 2100000, guid: 1158e3d124ebc6b4790ed07620622169, type: 2}
+    second: {fileID: 2100000, guid: 0b432b36eec664c0aa291a071780da80, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -106,9 +106,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 8
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 40
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

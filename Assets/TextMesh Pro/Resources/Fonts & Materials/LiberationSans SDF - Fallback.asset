@@ -107,9 +107,9 @@ Material:
     - _Parallax: 0.02
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.90909094
+    - _ScaleRatioA: 0.9
     - _ScaleRatioB: 0.73125
-    - _ScaleRatioC: 0.7386364
+    - _ScaleRatioC: 0.73125
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -219,6 +219,30 @@ MonoBehaviour:
     m_Width: 71
     m_Height: 41
   m_FreeGlyphRects:
+  - m_X: 252
+    m_Y: 66
+    m_Width: 4
+    m_Height: 445
+  - m_X: 64
+    m_Y: 28
+    m_Width: 19
+    m_Height: 66
+  - m_X: 70
+    m_Y: 28
+    m_Width: 13
+    m_Height: 77
+  - m_X: 98
+    m_Y: 105
+    m_Width: 55
+    m_Height: 26
+  - m_X: 28
+    m_Y: 159
+    m_Width: 42
+    m_Height: 16
+  - m_X: 57
+    m_Y: 159
+    m_Width: 13
+    m_Height: 352
   - m_X: 0
     m_Y: 41
     m_Width: 511
@@ -227,6 +251,42 @@ MonoBehaviour:
     m_Y: 0
     m_Width: 440
     m_Height: 511
+  - m_X: 210
+    m_Y: 141
+    m_Width: 162
+    m_Height: 370
+  - m_X: 252
+    m_Y: 82
+    m_Width: 120
+    m_Height: 429
+  - m_X: 315
+    m_Y: 66
+    m_Width: 57
+    m_Height: 445
+  - m_X: 210
+    m_Y: 149
+    m_Width: 301
+    m_Height: 362
+  - m_X: 210
+    m_Y: 146
+    m_Width: 221
+    m_Height: 365
+  - m_X: 492
+    m_Y: 83
+    m_Width: 19
+    m_Height: 428
+  - m_X: 431
+    m_Y: 64
+    m_Width: 3
+    m_Height: 19
+  - m_X: 153
+    m_Y: 64
+    m_Width: 42
+    m_Height: 2
+  - m_X: 180
+    m_Y: 26
+    m_Width: 15
+    m_Height: 40
   m_fontInfo:
     Name: Liberation Sans
     PointSize: 86
