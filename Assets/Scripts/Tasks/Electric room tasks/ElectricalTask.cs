@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel.Design;
 using System.Linq;
 using Menu;
+using Player;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -46,24 +47,25 @@ public class ElectricalTask : MonoBehaviour
 
     public Animator animator;
 
-    public GameObject playerCamera;
-    public GameObject taskCamera;
+    private Camera playerCamera;
+    private PlayerMovement playerMovement;
+    public Camera taskCamera;
     public GameObject taskHUD;
-
-    private bool success = false;
+    
+    
     
     void Start()
     {
         System.Random rnd = new System.Random();
         index = rnd.Next(possibilities.Length);
-        pointer1.transform.Rotate(possibilities[index][0], 0, 0);
-        pointer2.transform.Rotate(possibilities[index][1], 0, 0);
-        pointer3.transform.Rotate(possibilities[index][2], 0, 0);
-        pointer4.transform.Rotate(possibilities[index][3], 0, 0);
-        pointer5.transform.Rotate(possibilities[index][4], 0, 0);
-        pointer6.transform.Rotate(possibilities[index][5], 0, 0);
-        pointer7.transform.Rotate(possibilities[index][6], 0, 0);
-        pointer8.transform.Rotate(possibilities[index][7], 0, 0);
+        pointer1.transform.Rotate(possibilities[index][0], 0, 0, Space.Self);
+        pointer2.transform.Rotate(possibilities[index][1], 0, 0, Space.Self);
+        pointer3.transform.Rotate(possibilities[index][2], 0, 0, Space.Self);
+        pointer4.transform.Rotate(possibilities[index][3], 0, 0, Space.Self);
+        pointer5.transform.Rotate(possibilities[index][4], 0, 0, Space.Self);
+        pointer6.transform.Rotate(possibilities[index][5], 0, 0, Space.Self);
+        pointer7.transform.Rotate(possibilities[index][6], 0, 0, Space.Self);
+        pointer8.transform.Rotate(possibilities[index][7], 0, 0, Space.Self);
         for (int i = 0; i < result.Length; i++)
         {
             if (result[index][i] == actual[i])
@@ -75,26 +77,31 @@ public class ElectricalTask : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             taskHUD.gameObject.SetActive(false);
-            taskCamera.gameObject.SetActive(false);
-            playerCamera.gameObject.SetActive(true);
+            taskCamera.enabled = false;
             GameObject.Find("HUD").SetActive(true);
+            Debug.Log(playerCamera.name);
+            playerCamera.gameObject.SetActive(true);
+            playerCamera.enabled = true;
+            playerMovement.enabled = true;
         }
     }
     
-    public void OnClickButton(int number)
+    public void OnClickButton(int number,string set, string unset)
     {
         if (actual[number] == 1)
         {
-            animator.Play("Unset"+(number+1));
+            animator.Play(unset);
             actual[number] = 0;
+            Debug.Log("0");
         }
         else
         {
-            animator.Play("Set"+(number+1));
+            animator.Play(set);
             actual[number] = 1;
+            Debug.Log("1");
         }
 
         if (actual[number] == result[index][number])
@@ -108,32 +115,37 @@ public class ElectricalTask : MonoBehaviour
 
         if (successNumber == result.Length)
         {
-            success = true;
+            GameObject.Find("MissionList").GetComponent<MissionList>().TaskMachine();
         } 
     }
     
     public void OnClickButton1()
     {
-        OnClickButton(0);
+        OnClickButton(0, "Set1", "Unset1");
     }
 
     public void OnClickButton2()
     {
-        OnClickButton(1);
+        OnClickButton(1, "Set2","Unset2");
     }
     
     public void OnClickButton3()
     {
-        OnClickButton(2);
+        OnClickButton(2, "Set3","Unset3");
     }
     
     public void OnClickButton4()
     {
-        OnClickButton(3);
+        OnClickButton(3, "Set4","Unset4");
     }
 
-    public bool GetSuccess()
+    public void SetPlayerCamera(Camera camera)
     {
-        return success;
+        playerCamera = camera;
+    }
+
+    public void SetPlayerMovement(PlayerMovement movement)
+    {
+        playerMovement = movement;
     }
 }
