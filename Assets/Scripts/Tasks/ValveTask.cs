@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using Random = System.Random;
 
 namespace Tasks
 {
-    public class ValveTask : Task
+    public class ValveTask : MonoBehaviourPun
     {
         public GameObject eau1;
         public GameObject eau2;
@@ -36,7 +37,6 @@ namespace Tasks
 
         private void Start()
         {
-            this.nom = "Salle du traitement des eaux";
             iValve = 0;
             tasks = new List<(List<GameObject>, List<GameObject>)>
             {
@@ -69,14 +69,21 @@ namespace Tasks
                     if (valvesDejaTournees.Count == valvesATourner.Count)
                     {
                         //mission réussie
-                        //GameObject.Find("ecran mission").GetComponent<ClasseDeNathDeLecranMission>().MissionValveFinie();
+                        photonView.RPC("Finished", RpcTarget.All);
                     }
                 }
                 else if (!valvesDejaTournees.Contains(valveTransform.gameObject))
                 {
                     iValve = 0;
+                    valvesDejaTournees.Clear();
                 }
             }
+        }
+
+        [PunRPC]
+        void Finished()
+        {
+            GameObject.Find("MissionList").GetComponent<MissionList>().TaskWater();
         }
     }
 }

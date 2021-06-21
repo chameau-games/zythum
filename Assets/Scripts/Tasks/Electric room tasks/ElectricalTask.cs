@@ -58,7 +58,7 @@ public class ElectricalTask : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         index = rnd.Next(possibilities.Length);
-        pointer2.transform.Rotate(0, possibilities[index][0], 0);
+        pointer1.transform.Rotate(0, possibilities[index][0], 0);
         pointer2.transform.Rotate(0, possibilities[index][1], 0);
         pointer3.transform.Rotate(0, possibilities[index][2], 0);
         pointer4.transform.Rotate(0, possibilities[index][3], 0);

@@ -34,8 +34,8 @@ namespace Player
             spawnpointSdc = GameObject.Find("Spawnpoint salle de contrôle").transform;
             aerationVent = GameObject.Find("aerationVent").transform;
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-            //aerationVent = GameObject.Find("aerationVent").transform;
-            electricalPanel = GameObject.Find("tableau électrique").transform;
+            aerationVent = GameObject.Find("aerationVent").transform;
+            // electricalPanel = GameObject.Find("tableau électrique").transform;
             hudMissionList = GameObject.Find("MissionListCanvas").transform;
         }
 
@@ -49,41 +49,41 @@ namespace Player
                 maxReach, LayerMask.GetMask("Map")))
             {
                 //ça touche la bouche d'aération (pour passer dans la salle de controle & c'est le joueur qui peut y aller
-                /*if (PhotonNetwork.IsMasterClient && hit.transform == aerationVent)
+                if (PhotonNetwork.IsMasterClient && hit.transform == aerationVent)
                 {
-                    if (Input.GetKey(KeyCode.U))
+                    if (Input.GetKey(KeyCode.E))
                     {
                         transform.SetPositionAndRotation(spawnpointSdc.position, spawnpointSdc.rotation);
                     }
                     else
                     {
-                        hud.SetInformationText("Appuie sur U pour passer dans la bouche d'aération");
-                        hud.ShowText();
-                    }
-                }*/
-                
-                if (!PhotonNetwork.IsMasterClient && hit.transform == electricalPanel)
-                {
-                    if (Input.GetKey(KeyCode.E))
-                    {
-                        ElectricalTask task = GameObject.Find("ElectricalTask").GetComponent<ElectricalTask>();
-                        Debug.Log(GameObject.Find("ElectricalTask").name);
-                        task.SetPlayerCamera(playerCamera);
-                        task.SetPlayerMovement(playerMovement);
-                        task.taskHUD.gameObject.SetActive(true);
-                        task.taskCamera.gameObject.SetActive(true);
-                        task.taskCamera.enabled = true;
-                        hudCanvas.gameObject.SetActive(false);
-                        playerCamera.SetActive(false);
-                        playerMovement.enabled = false;
-
-                    }
-                    else
-                    {
-                        hud.SetInformationText("Appuie sur E pour modifier le panneau électrique");
+                        hud.SetInformationText("Appuie sur E pour passer dans la bouche d'aération");
                         hud.ShowText();
                     }
                 }
+                
+                // else if (!PhotonNetwork.IsMasterClient && hit.transform == electricalPanel)
+                // {
+                //     if (Input.GetKey(KeyCode.E))
+                //     {
+                //         ElectricalTask task = GameObject.Find("ElectricalTask").GetComponent<ElectricalTask>();
+                //         Debug.Log(GameObject.Find("ElectricalTask").name);
+                //         task.SetPlayerCamera(playerCamera);
+                //         task.SetPlayerMovement(playerMovement);
+                //         task.taskHUD.gameObject.SetActive(true);
+                //         task.taskCamera.gameObject.SetActive(true);
+                //         task.taskCamera.enabled = true;
+                //         hudCanvas.gameObject.SetActive(false);
+                //         playerCamera.SetActive(false);
+                //         playerMovement.enabled = false;
+                //
+                //     }
+                //     else
+                //     {
+                //         hud.SetInformationText("Appuie sur E pour modifier le panneau électrique");
+                //         hud.ShowText();
+                //     }
+                // }
                 else if (PhotonNetwork.IsMasterClient &&
                          hit.transform == gameManager.boutonQuiOuvreLaPorteDeLaCellule.transform)
                 {
