@@ -21,12 +21,14 @@ namespace Player
         public new Transform transform;
         public GameObject playerCamera;
         private Rigidbody _rigidbody;
+        private Animator _animator;
 
         private bool _isGrounded = true;
         private bool _canControl = true;
 
         private void Awake()
         {
+            _animator=GetComponent<Animator>();
             _rigidbody = GetComponent<Rigidbody>();
             foreach (GameObject o in GameObject.FindGameObjectsWithTag("Player"))
             {
@@ -91,17 +93,33 @@ namespace Player
             float speedH = Input.GetAxis("Horizontal");
             float speedV = Input.GetAxis("Vertical");
 
+            if (speedH == speedV && speedH == 0)
+            {
+                _animator.SetBool("iswalking",false);
+                _animator.SetBool("isfastwalking",false);
+                _animator.SetBool("isrunning",false);
+            }
+
             float speed;
             switch (Input.GetAxisRaw("Speed"))
             {
                 case -1:
                     speed = maxCrouchSpeed;
+                    _animator.SetBool("iswalking",true);
+                    _animator.SetBool("isfastwalking",false);
+                    _animator.SetBool("isrunning",false);
                     break;
                 case 1:
                     speed = maxSprintSpeed;
+                    _animator.SetBool("iswalking",false);
+                    _animator.SetBool("isfastwalking",false);
+                    _animator.SetBool("isrunning",true);
                     break;
                 default:
                     speed = maxWalkSpeed;
+                    _animator.SetBool("iswalking",false);
+                    _animator.SetBool("isfastwalking",true);
+                    _animator.SetBool("isrunning",false);
                     break;
             }
 

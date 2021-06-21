@@ -33,7 +33,6 @@ namespace AI
         // Update is called once per frame
         void Update()
         {
-            _animator.SetBool("iswalking",true);
             if(_fovd.GetTarget() == null)
             {
                 Patrol();
@@ -46,22 +45,23 @@ namespace AI
         }
 
         private void ChasePlayer(Transform target)
+        {
+            guard.speed =3;
+            _animator.SetBool("iswalking",true);
+            guard.SetDestination(target.position);
+            if (Vector3.Distance(transform.position, target.position) < 1f)
             {
-                _animator.SetBool("iswalking",true);
-                guard.SetDestination(target.position);
-                if (Vector3.Distance(transform.position, target.position) < 1f)
-                {
-                    Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
-                    prop.Add("hasWin", false);
-                    PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
-                    PhotonNetwork.LoadLevel("Gameover");
-                    }
+                Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
+                prop.Add("hasWin", false);
+                PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
+                PhotonNetwork.LoadLevel("Gameover");
             }
+        }
 
         void Patrol()
         {
+            _animator.SetBool("iswalking",true);
             guard.SetDestination(_nextPosition.position);
-
             if (Vector3.Distance(transform.position, _nextPosition.position) <= 1f)
             {
                 setnextposition();

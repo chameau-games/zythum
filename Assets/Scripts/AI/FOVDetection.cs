@@ -74,7 +74,7 @@ namespace AI
                 if (col.transform == target)
                 {
                     RaycastHit hit;
-                    Vector3 pos = new Vector3(transform.position.x, 1, transform.position.z);
+                    Vector3 pos = new Vector3(transform.position.x, (float)1.5, transform.position.z);
                     if (Physics.Raycast(pos, target.position, out hit,maxRadius, layermask))
                     {
                         if (hit.collider.transform == target)
