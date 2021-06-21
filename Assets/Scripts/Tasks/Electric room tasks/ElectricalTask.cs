@@ -15,7 +15,7 @@ public class ElectricalTask : MonoBehaviour
     private int[][] possibilities =
     {
         new[] {-45, 0, 45, 45, -45, 45, -45, -45},
-        new[] {0, 45, 0, 0, -45, -45, 0, 45},
+        new[] {-45, 45, 0, 0, -45, -45, 0, 45},
         new[] {45, 45, 45, 45, -45, -45, -45, -45},
     };
 
@@ -47,7 +47,7 @@ public class ElectricalTask : MonoBehaviour
 
     public Animator animator;
 
-    private Camera playerCamera;
+    private GameObject playerCamera;
     private PlayerMovement playerMovement;
     public Camera taskCamera;
     public GameObject taskHUD;
@@ -58,14 +58,15 @@ public class ElectricalTask : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         index = rnd.Next(possibilities.Length);
-        pointer1.transform.Rotate(possibilities[index][0], 0, 0, Space.Self);
-        pointer2.transform.Rotate(possibilities[index][1], 0, 0, Space.Self);
-        pointer3.transform.Rotate(possibilities[index][2], 0, 0, Space.Self);
-        pointer4.transform.Rotate(possibilities[index][3], 0, 0, Space.Self);
-        pointer5.transform.Rotate(possibilities[index][4], 0, 0, Space.Self);
-        pointer6.transform.Rotate(possibilities[index][5], 0, 0, Space.Self);
-        pointer7.transform.Rotate(possibilities[index][6], 0, 0, Space.Self);
-        pointer8.transform.Rotate(possibilities[index][7], 0, 0, Space.Self);
+        pointer2.transform.Rotate(0, possibilities[index][0], 0);
+        pointer2.transform.Rotate(0, possibilities[index][1], 0);
+        pointer3.transform.Rotate(0, possibilities[index][2], 0);
+        pointer4.transform.Rotate(0, possibilities[index][3], 0);
+        pointer5.transform.Rotate(0, possibilities[index][4], 0);
+        pointer6.transform.Rotate(0, possibilities[index][5], 0);
+        pointer7.transform.Rotate(0, possibilities[index][6], 0);
+        pointer8.transform.Rotate(0, possibilities[index][7], 0);
+        Debug.Log("gros zizi");
         for (int i = 0; i < result.Length; i++)
         {
             if (result[index][i] == actual[i])
@@ -83,8 +84,7 @@ public class ElectricalTask : MonoBehaviour
             taskCamera.enabled = false;
             GameObject.Find("HUD").SetActive(true);
             Debug.Log(playerCamera.name);
-            playerCamera.gameObject.SetActive(true);
-            playerCamera.enabled = true;
+            playerCamera.SetActive(true);
             playerMovement.enabled = true;
         }
     }
@@ -95,13 +95,11 @@ public class ElectricalTask : MonoBehaviour
         {
             animator.Play(unset);
             actual[number] = 0;
-            Debug.Log("0");
         }
         else
         {
             animator.Play(set);
             actual[number] = 1;
-            Debug.Log("1");
         }
 
         if (actual[number] == result[index][number])
@@ -139,7 +137,7 @@ public class ElectricalTask : MonoBehaviour
         OnClickButton(3, "Set4","Unset4");
     }
 
-    public void SetPlayerCamera(Camera camera)
+    public void SetPlayerCamera(GameObject camera)
     {
         playerCamera = camera;
     }

@@ -19,12 +19,11 @@ namespace Player
         private Transform electricalPanel;
         private Transform hudMissionList;
 
-        public Camera playerCamera;
+        public GameObject playerCamera;
         public PlayerMovement playerMovement;
 
         private void Start()
         {
-            Debug.Log("a");
             hudCanvas = GameObject.Find("HUD");
             hud = hudCanvas.GetComponent<HUD>();
             spawnpointSdc = GameObject.Find("Spawnpoint salle de contrôle").transform;
@@ -58,16 +57,17 @@ namespace Player
                 
                 if (!PhotonNetwork.IsMasterClient && hit.transform == electricalPanel)
                 {
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetKey(KeyCode.E))
                     {
-                        var task = GameObject.Find("ElectricalTask").GetComponent<ElectricalTask>();
+                        ElectricalTask task = GameObject.Find("ElectricalTask").GetComponent<ElectricalTask>();
+                        Debug.Log(GameObject.Find("ElectricalTask").name);
                         task.SetPlayerCamera(playerCamera);
                         task.SetPlayerMovement(playerMovement);
                         task.taskHUD.gameObject.SetActive(true);
                         task.taskCamera.gameObject.SetActive(true);
                         task.taskCamera.enabled = true;
                         hudCanvas.gameObject.SetActive(false);
-                        playerCamera.enabled = false;
+                        playerCamera.SetActive(false);
                         playerMovement.enabled = false;
 
                     }
