@@ -16533,10 +16533,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2645153742202558646, guid: 7000bf5b9ccb24734826c9b31843fdd3,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7459427157414867521, guid: 7000bf5b9ccb24734826c9b31843fdd3,
         type: 3}
       propertyPath: m_Name
-      value: Digicode - prision (useless)
+      value: Digicode - prision
       objectReference: {fileID: 0}
     - target: {fileID: 7459427157414867534, guid: 7000bf5b9ccb24734826c9b31843fdd3,
         type: 3}
@@ -16592,11 +16597,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218953650981707781, guid: 7000bf5b9ccb24734826c9b31843fdd3,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7000bf5b9ccb24734826c9b31843fdd3, type: 3}
@@ -30129,6 +30129,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2645153742202558646, guid: 7000bf5b9ccb24734826c9b31843fdd3,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7459427157414867521, guid: 7000bf5b9ccb24734826c9b31843fdd3,
         type: 3}
       propertyPath: m_Name
@@ -30188,11 +30193,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218953650981707781, guid: 7000bf5b9ccb24734826c9b31843fdd3,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7000bf5b9ccb24734826c9b31843fdd3, type: 3}
@@ -44544,10 +44544,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2645153742202558646, guid: 7000bf5b9ccb24734826c9b31843fdd3,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7459427157414867521, guid: 7000bf5b9ccb24734826c9b31843fdd3,
         type: 3}
       propertyPath: m_Name
-      value: Digicode - pas de salle (useless)
+      value: Digicode - pas de salle
       objectReference: {fileID: 0}
     - target: {fileID: 7459427157414867534, guid: 7000bf5b9ccb24734826c9b31843fdd3,
         type: 3}
@@ -44603,11 +44608,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218953650981707781, guid: 7000bf5b9ccb24734826c9b31843fdd3,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7000bf5b9ccb24734826c9b31843fdd3, type: 3}
@@ -50834,6 +50834,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2645153742202558646, guid: 7000bf5b9ccb24734826c9b31843fdd3,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7459427157414867521, guid: 7000bf5b9ccb24734826c9b31843fdd3,
         type: 3}
       propertyPath: m_Name
@@ -50893,11 +50898,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218953650981707781, guid: 7000bf5b9ccb24734826c9b31843fdd3,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7000bf5b9ccb24734826c9b31843fdd3, type: 3}

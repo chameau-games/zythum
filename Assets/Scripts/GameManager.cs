@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
             PhotonNetwork.Instantiate("Player", spawnpoints[0].position, spawnpoints[0].rotation);
             GameObject[] tousLesBoutonsSDC = GameObject.FindGameObjectsWithTag("bouton sdc");
             boutonQuiOuvreLaPorteDeLaCellule = tousLesBoutonsSDC[new Random().Next(tousLesBoutonsSDC.Length)];
+            
         }
         else
             PhotonNetwork.Instantiate("Player", spawnpoints[1].position, spawnpoints[1].rotation);

@@ -784,7 +784,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickDelButton
         m_Mode: 1
         m_Arguments:
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -1310,7 +1310,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -1333,14 +1333,13 @@ GameObject:
   - component: {fileID: 7459427156378745770}
   - component: {fileID: 7459427156378745773}
   - component: {fileID: 7459427156378745772}
-  - component: {fileID: 8660956336141888627}
   m_Layer: 5
   m_Name: CanvasDigi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7459427156378745775
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1434,26 +1433,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8660956336141888627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7459427156378745774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2445b3d6b98a94889ac0c8839adea3f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCam: {fileID: 0}
-  digicodeCam: {fileID: 7459427157210429295}
-  playerMov: {fileID: 0}
-  hud: {fileID: 0}
-  onCamDigi: 0
-  isLocked: 1
-  code: {fileID: 7459427156307923332}
-  id: {fileID: 7833230979448255954}
 --- !u!1 &7459427156451870228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1552,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -1836,7 +1815,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -2099,7 +2078,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -2229,7 +2208,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -2359,7 +2338,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -2622,7 +2601,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -2752,7 +2731,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -2855,6 +2834,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7459427157414867534}
+  - component: {fileID: 8019273655417671831}
+  - component: {fileID: 2645153742202558646}
   m_Layer: 15
   m_Name: Digicode
   m_TagString: Untagged
@@ -2879,6 +2860,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8019273655417671831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459427157414867521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2445b3d6b98a94889ac0c8839adea3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 0}
+  playerMov: {fileID: 0}
+  hud: {fileID: 0}
+  isLocked: 1
+  digicodeCanvas: {fileID: 7459427156378745774}
+  digicodeCam: {fileID: 7459427157210429295}
+  code: {fileID: 7459427156307923332}
+  id: {fileID: 7833230979448255954}
+--- !u!114 &2645153742202558646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459427157414867521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7459427157458261995
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,7 +3420,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickNumButton
         m_Mode: 5
         m_Arguments:
@@ -3660,7 +3683,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8660956336141888627}
+      - m_Target: {fileID: 8019273655417671831}
         m_MethodName: OnClickValidButton
         m_Mode: 1
         m_Arguments:

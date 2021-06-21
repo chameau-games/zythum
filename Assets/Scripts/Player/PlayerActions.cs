@@ -10,7 +10,6 @@ namespace Player
         public GameObject playerCamera;
         public PlayerMovement playerMovement;
         
-        private int code;
         public float maxReach;
         private HUD hud;
         private Transform spawnpointSdc;
@@ -66,18 +65,18 @@ namespace Player
                 }
                 else if (hit.transform.gameObject.CompareTag("digicode"))
                 {
-                    if (Input.GetKey(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
-                        Code code = hit.transform.parent.Find("CanvasDigi").GetComponent<Code>();
-                        code.playerCam = playerCamera;
-                        code.playerMov = playerMovement;
-                        code.hud = hud.gameObject;
-                        code.digicodeCam.SetActive(true);
+                        Code digicode = hit.transform.parent.GetComponent<Code>();
+                        digicode.playerCam = playerCamera;
+                        digicode.playerMov = playerMovement;
+                        digicode.hud = hud.gameObject;
+                        digicode.digicodeCam.SetActive(true);
+                        digicode.digicodeCanvas.SetActive(true);
+                        
                         hud.gameObject.SetActive(false);
                         playerCamera.SetActive(false);
                         playerMovement.enabled = false;
-                        code.onCamDigi = true;
-                        //GameObject.Find("MissionList").GetComponent<MissionList>().TaskServer();
                     }
                     else
                     {
