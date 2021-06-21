@@ -8,7 +8,7 @@ using Debug = UnityEngine.Debug;
 
 namespace Player
 {
-    public class PlayerActions : MonoBehaviour
+    public class PlayerActions : MonoBehaviourPun
     {
         public float maxReach;
         private HUD hud;
@@ -19,17 +19,23 @@ namespace Player
         private Transform electricalPanel;
         private Transform hudMissionList;
 
-        public GameObject playerCamera;
+        private GameObject playerCamera;
         public PlayerMovement playerMovement;
 
         private void Start()
         {
+            if (!photonView.IsMine)
+            {
+                enabled = false;
+                return;
+            }
             hudCanvas = GameObject.Find("HUD");
             hud = hudCanvas.GetComponent<HUD>();
             spawnpointSdc = GameObject.Find("Spawnpoint salle de contrôle").transform;
             //aerationVent = GameObject.Find("aerationVent").transform;
             electricalPanel = GameObject.Find("tableau électrique").transform;
             hudMissionList = GameObject.Find("MissionListCanvas").transform;
+            playerCamera = GameObject.FindGameObjectWithTag("PlayerCam");
         }
 
         // Update is called once per frame
@@ -60,12 +66,11 @@ namespace Player
                     if (Input.GetKey(KeyCode.E))
                     {
                         ElectricalTask task = GameObject.Find("ElectricalTask").GetComponent<ElectricalTask>();
-                        Debug.Log(GameObject.Find("ElectricalTask").name);
                         task.SetPlayerCamera(playerCamera);
                         task.SetPlayerMovement(playerMovement);
-                        task.taskHUD.gameObject.SetActive(true);
+                        task.SetHUD(hudCanvas);
+                        task.taskHUD.SetActive(true);
                         task.taskCamera.gameObject.SetActive(true);
-                        task.taskCamera.enabled = true;
                         hudCanvas.gameObject.SetActive(false);
                         playerCamera.SetActive(false);
                         playerMovement.enabled = false;
