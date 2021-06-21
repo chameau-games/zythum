@@ -4,12 +4,13 @@ using System;
 using System.ComponentModel.Design;
 using System.Linq;
 using Menu;
+using Photon.Pun;
 using Player;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class ElectricalTask : MonoBehaviour
+public class ElectricalTask : MonoBehaviourPun
 {
     
     private int[][] possibilities =
@@ -21,8 +22,8 @@ public class ElectricalTask : MonoBehaviour
 
     private int[][] result =
     {
-        new[] {1, 0, 0, 0},
-        new[] {1, 0, 0, 1},
+        new[] {0, 1, 1, 1},
+        new[] {0, 1, 1, 1},
         new[] {0, 1, 1, 1}
     };
 
@@ -45,7 +46,11 @@ public class ElectricalTask : MonoBehaviour
     public Button button3;
     public Button button4;
 
-    public Animator animator;
+    public GameObject lever1;
+    public GameObject lever2;
+    public GameObject lever3;
+    public GameObject lever4;
+    
 
     private GameObject playerCamera;
     private PlayerMovement playerMovement;
@@ -58,7 +63,7 @@ public class ElectricalTask : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         index = rnd.Next(possibilities.Length);
-        pointer2.transform.Rotate(0, possibilities[index][0], 0);
+        pointer1.transform.Rotate(0, possibilities[index][0], 0);
         pointer2.transform.Rotate(0, possibilities[index][1], 0);
         pointer3.transform.Rotate(0, possibilities[index][2], 0);
         pointer4.transform.Rotate(0, possibilities[index][3], 0);
@@ -89,16 +94,18 @@ public class ElectricalTask : MonoBehaviour
         }
     }
     
-    public void OnClickButton(int number,string set, string unset)
+    public void OnClickButton(int number, GameObject lever)
     {
+        Animator anim = lever.gameObject.GetComponent<Animator>();
         if (actual[number] == 1)
         {
-            animator.Play(unset);
+            anim.SetBool("set", false);
+            anim.Play("unset");
             actual[number] = 0;
         }
         else
         {
-            animator.Play(set);
+            anim.SetBool("set",true);
             actual[number] = 1;
         }
 
@@ -113,28 +120,34 @@ public class ElectricalTask : MonoBehaviour
 
         if (successNumber == result.Length)
         {
-            GameObject.Find("MissionList").GetComponent<MissionList>().TaskMachine();
+            photonView.RPC("success", RpcTarget.All);
         } 
+    }
+
+    [PunRPC]
+    public void success()
+    {
+        GameObject.Find("MissionList").GetComponent<MissionList>().TaskMachine();
     }
     
     public void OnClickButton1()
     {
-        OnClickButton(0, "Set1", "Unset1");
+        OnClickButton(0, lever1);
     }
 
     public void OnClickButton2()
     {
-        OnClickButton(1, "Set2","Unset2");
+        OnClickButton(1, lever2);
     }
     
     public void OnClickButton3()
     {
-        OnClickButton(2, "Set3","Unset3");
+        OnClickButton(2, lever3);
     }
     
     public void OnClickButton4()
     {
-        OnClickButton(3, "Set4","Unset4");
+        OnClickButton(3, lever4);
     }
 
     public void SetPlayerCamera(GameObject camera)
