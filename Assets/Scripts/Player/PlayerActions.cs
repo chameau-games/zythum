@@ -19,6 +19,7 @@ namespace Player
         private Transform electricalPanel;
         private Transform hudMissionList;
 
+        private Transform carte;
         private GameManager gameManager;
 
         private void Start()
@@ -34,6 +35,7 @@ namespace Player
             aerationVent = GameObject.Find("aerationVent").transform;
             // electricalPanel = GameObject.Find("tableau électrique").transform;
             hudMissionList = GameObject.Find("MissionListCanvas").transform;
+            carte = GameObject.Find("carte").transform;
         }
 
         // Update is called once per frame
