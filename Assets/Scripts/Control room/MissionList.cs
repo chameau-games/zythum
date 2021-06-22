@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +27,7 @@ public class MissionList : MonoBehaviour
         textInfo.color = Color.green;
         missionNumber--;
     }
-
+    
     public void TaskMachine()
     {
         textMachine.color = Color.green;

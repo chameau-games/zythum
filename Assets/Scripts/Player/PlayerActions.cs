@@ -9,7 +9,7 @@ using Debug = UnityEngine.Debug;
 
 namespace Player
 {
-    public class PlayerActions : MonoBehaviour
+    public class PlayerActions : MonoBehaviourPun
     {
         private int code;
         public float maxReach;
@@ -19,24 +19,30 @@ namespace Player
 
         private Transform aerationVent;
         private Transform electricalPanel;
-        private Transform hudMissionList;
+        private Transform hudMissionManual;
 
         private GameManager gameManager;
 
         public GameObject playerCamera;
         public PlayerMovement playerMovement;
+        
+        
 
         private void Start()
         {
-            hud = GameObject.Find("HUD").GetComponent<HUD>();
+            if (!photonView.IsMine)
+            {
+                enabled = false;
+                return;
+            }
             hudCanvas = GameObject.Find("HUD");
             hud = hudCanvas.GetComponent<HUD>();
             spawnpointSdc = GameObject.Find("Spawnpoint salle de contrôle").transform;
             aerationVent = GameObject.Find("aerationVent").transform;
+            electricalPanel = GameObject.Find("tableau électrique").transform;
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-            aerationVent = GameObject.Find("aerationVent").transform;
-            // electricalPanel = GameObject.Find("tableau électrique").transform;
-            hudMissionList = GameObject.Find("MissionListCanvas").transform;
+            hudMissionManual = GameObject.Find("MissionManual").transform;
+            playerCamera = GameObject.FindGameObjectWithTag("PlayerCam");
         }
 
         // Update is called once per frame
@@ -62,28 +68,27 @@ namespace Player
                     }
                 }
                 
-                // else if (!PhotonNetwork.IsMasterClient && hit.transform == electricalPanel)
-                // {
-                //     if (Input.GetKey(KeyCode.E))
-                //     {
-                //         ElectricalTask task = GameObject.Find("ElectricalTask").GetComponent<ElectricalTask>();
-                //         Debug.Log(GameObject.Find("ElectricalTask").name);
-                //         task.SetPlayerCamera(playerCamera);
-                //         task.SetPlayerMovement(playerMovement);
-                //         task.taskHUD.gameObject.SetActive(true);
-                //         task.taskCamera.gameObject.SetActive(true);
-                //         task.taskCamera.enabled = true;
-                //         hudCanvas.gameObject.SetActive(false);
-                //         playerCamera.SetActive(false);
-                //         playerMovement.enabled = false;
-                //
-                //     }
-                //     else
-                //     {
-                //         hud.SetInformationText("Appuie sur E pour modifier le panneau électrique");
-                //         hud.ShowText();
-                //     }
-                // }
+                else if (!PhotonNetwork.IsMasterClient && hit.transform == electricalPanel)
+                {
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        ElectricalTask task = GameObject.Find("ElectricalTask").GetComponent<ElectricalTask>();
+                        task.SetPlayerCamera(playerCamera);
+                        task.SetPlayerMovement(playerMovement);
+                        task.SetHUD(hudCanvas);
+                        task.taskHUD.SetActive(true);
+                        task.taskCamera.gameObject.SetActive(true);
+                        hudCanvas.gameObject.SetActive(false);
+                        playerCamera.SetActive(false);
+                        playerMovement.enabled = false;
+
+                    }
+                    else
+                    {
+                        hud.SetInformationText("Appuie sur E pour modifier le panneau électrique");
+                        hud.ShowText();
+                    }
+                }
                 else if (PhotonNetwork.IsMasterClient &&
                          hit.transform == gameManager.boutonQuiOuvreLaPorteDeLaCellule.transform)
                 {
@@ -110,20 +115,22 @@ namespace Player
                     }
                 }
                 
-                if (PhotonNetwork.IsMasterClient && hit.transform == hudMissionList)
+                if (PhotonNetwork.IsMasterClient && hit.transform == hudMissionManual)
                 {
                     if (Input.GetKey(KeyCode.E))
                     {
-                        var task = GameObject.Find("MissionList").GetComponent<MissionList>();
-                        task.playerCamera = Camera.current.gameObject;
-                        Camera.current.gameObject.SetActive(false);
+                        var task = GameObject.Find("MissionManual").GetComponent<MissionManual>();
+                        task.playerCamera = playerCamera;
+                        task.playerMovement = playerMovement;
                         task.taskCamera.gameObject.SetActive(true);
+                        task.hud = hudCanvas;
                         hudCanvas.gameObject.SetActive(false);
-                        task.taskHUD.gameObject.SetActive(true);
+                        playerCamera.SetActive(false);
+                        playerMovement.enabled = false;
                     }
                     else
                     {
-                        hud.SetInformationText("Appuie sur E pour consulter la liste des missions");
+                        hud.SetInformationText("Appuie sur E pour consulter le manuel des missions");
                         hud.ShowText();
                     }
                 }

@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 9212369630783619483}
   m_Layer: 13
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: PlayerCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,7 +297,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxReach: 2
-  playerCamera: {fileID: 2513864151995955090}
   playerMovement: {fileID: 122154463739907262}
 --- !u!114 &5856365243983030539
 MonoBehaviour:
