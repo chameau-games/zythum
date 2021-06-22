@@ -29,11 +29,8 @@ public class MissionManual : MonoBehaviour
     
     public void OnNextButtonClick()
     {
-        Debug.Log(index);
-        Debug.Log("ababa");
         index = (index + 1) % images.Length;
         image.GetComponent<Image>().sprite = images[index];
-        Debug.Log(index);
     }
     
     public void OnBackButtonClick()

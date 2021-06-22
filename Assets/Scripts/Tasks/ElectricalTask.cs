@@ -47,11 +47,6 @@ public class ElectricalTask : MonoBehaviourPun
     public GameObject pointer42;
     public GameObject pointer43;
 
-    public Button button1;
-    public Button button2;
-    public Button button3;
-    public Button button4;
-
     public GameObject lever1;
     public GameObject lever2;
     public GameObject lever3;

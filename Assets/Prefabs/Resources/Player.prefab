@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8098096121583852970}
   - component: {fileID: 1564073944313332934}
   - component: {fileID: 5513049101782440133}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,6 +320,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 8463588892298349983}
   - {fileID: 8121518719725423745}
+  - {fileID: 5918254467644971115}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -388,8 +389,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: iswalking
+  - Type: 4
+    SynchronizeType: 0
+    Name: isfastwalking
+  - Type: 4
+    SynchronizeType: 0
+    Name: isrunning
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!1 &5084145706120035411
 GameObject:
   m_ObjectHideFlags: 0
