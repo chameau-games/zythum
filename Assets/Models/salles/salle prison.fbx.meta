@@ -28,7 +28,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Lampe jaune
-    second: {fileID: 2100000, guid: 0b432b36eec664c0aa291a071780da80, type: 2}
+    second: {fileID: 2100000, guid: b82f82997fedb46dbacc10ffd0dade44, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
