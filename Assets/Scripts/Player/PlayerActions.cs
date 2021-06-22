@@ -17,7 +17,7 @@ namespace Player
 
         private Transform aerationVent;
         private Transform electricalPanel;
-        private Transform hudMissionList;
+        private Transform hudMissionManual;
 
         private GameObject playerCamera;
         public PlayerMovement playerMovement;
@@ -34,7 +34,7 @@ namespace Player
             spawnpointSdc = GameObject.Find("Spawnpoint salle de contrôle").transform;
             //aerationVent = GameObject.Find("aerationVent").transform;
             electricalPanel = GameObject.Find("tableau électrique").transform;
-            hudMissionList = GameObject.Find("MissionListCanvas").transform;
+            hudMissionManual = GameObject.Find("MissionManual").transform;
             playerCamera = GameObject.FindGameObjectWithTag("PlayerCam");
         }
 
@@ -83,20 +83,22 @@ namespace Player
                     }
                 }
                 
-                if (PhotonNetwork.IsMasterClient && hit.transform == hudMissionList)
+                if (PhotonNetwork.IsMasterClient && hit.transform == hudMissionManual)
                 {
                     if (Input.GetKey(KeyCode.E))
                     {
-                        var task = GameObject.Find("MissionList").GetComponent<MissionList>();
-                        task.playerCamera = Camera.current.gameObject;
-                        Camera.current.gameObject.SetActive(false);
+                        var task = GameObject.Find("MissionManual").GetComponent<MissionManual>();
+                        task.playerCamera = playerCamera;
+                        task.playerMovement = playerMovement;
                         task.taskCamera.gameObject.SetActive(true);
+                        task.hud = hudCanvas;
                         hudCanvas.gameObject.SetActive(false);
-                        task.taskHUD.gameObject.SetActive(true);
+                        playerCamera.SetActive(false);
+                        playerMovement.enabled = false;
                     }
                     else
                     {
-                        hud.SetInformationText("Appuie sur E pour consulter la liste des missions");
+                        hud.SetInformationText("Appuie sur E pour consulter le manuel des missions");
                         hud.ShowText();
                     }
                 }
