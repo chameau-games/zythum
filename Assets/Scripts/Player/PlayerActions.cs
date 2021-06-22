@@ -1,11 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Menu;
+﻿using Menu;
 using Photon.Pun;
 using Tasks;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Player
 {
@@ -24,9 +20,6 @@ namespace Player
         private Transform hudMissionList;
 
         private GameManager gameManager;
-
-        public GameObject playerCamera;
-        public PlayerMovement playerMovement;
 
         private void Start()
         {
@@ -55,7 +48,7 @@ namespace Player
                 //ça touche la bouche d'aération (pour passer dans la salle de controle & c'est le joueur qui peut y aller
                 if (PhotonNetwork.IsMasterClient && hit.transform == aerationVent)
                 {
-                    if (Input.GetKey(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
                         transform.SetPositionAndRotation(spawnpointSdc.position, spawnpointSdc.rotation);
                     }
@@ -91,7 +84,7 @@ namespace Player
                 else if (PhotonNetwork.IsMasterClient &&
                          hit.transform == gameManager.boutonQuiOuvreLaPorteDeLaCellule.transform)
                 {
-                    if (Input.GetKey(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
                         gameManager.OuvrirGrille();
                     }
@@ -124,7 +117,7 @@ namespace Player
                 }
                 else if (hit.transform.gameObject.CompareTag("serverTag"))
                 {
-                    if (Input.GetKey(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
                         ServerTask serverTask = hit.transform.parent.GetComponent<ServerTask>();
                         serverTask.playerCam = playerCamera;
@@ -141,7 +134,7 @@ namespace Player
                 }
                 else if (!PhotonNetwork.IsMasterClient && hit.transform.CompareTag("valves"))
                 {
-                    if (Input.GetKey(KeyCode.U))
+                    if (Input.GetKeyDown(KeyCode.U))
                     {
                         GameObject.Find("salle eau").GetComponent<ValveTask>().TurnValve(hit.transform);
                     }
@@ -154,7 +147,7 @@ namespace Player
                 
                 if (PhotonNetwork.IsMasterClient && hit.transform == hudMissionList)
                 {
-                    if (Input.GetKey(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
                         var task = GameObject.Find("MissionList").GetComponent<MissionList>();
                         task.playerCamera = Camera.current.gameObject;

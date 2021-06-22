@@ -45,17 +45,34 @@ public class Code : MonoBehaviourPun
     }
     public void OnClickValidButton()
     {
+       
         if (!isLocked) return;
         if (input == codes[idRoom])
         {
             isLocked = false;
-            hud.GetComponent<HUD>().SetInformationText("gg");
-            hud.GetComponent<HUD>().ShowText();
+            
+            digicodeCam.SetActive(false);
+            digicodeCanvas.SetActive(false);
+                        
+            hud.SetActive(true);
+            playerCam.SetActive(true);
+            playerMov.enabled = true;
+            
+            photonView.RPC("OpenDoor", RpcTarget.All, gameObject.name);
         }
         else
         {
             input = "";
             code.text = input;
+        }
+    }
+
+    [PunRPC]
+    void OpenDoor(string digicodeName)
+    {
+        if (digicodeName == gameObject.name)
+        {
+            GameObject.Find("map").GetComponent<Animation>().Play(gameObject.name);
         }
     }
     
@@ -69,14 +86,18 @@ public class Code : MonoBehaviourPun
             string numDigicode = idRoom.ToString();
             if (numDigicode.Length < 2)
                 numDigicode = '0' + numDigicode;
-            photonView.RPC("SetIdDigicode", RpcTarget.All, numDigicode);
+            photonView.RPC("SetIdDigicode", RpcTarget.All, numDigicode, gameObject.name);
         }
     }
 
     [PunRPC]
-    void SetIdDigicode(string numDigicode)
+    void SetIdDigicode(string numDigicode, string digicodeName)
     {
-        id.text = numDigicode;
+        if (digicodeName == gameObject.name)
+        {
+            id.text = numDigicode;
+            idRoom = int.Parse(numDigicode);
+        }
     }
 
     // Update is called once per frame
