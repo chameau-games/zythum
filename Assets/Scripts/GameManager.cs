@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using UnityEngine;
 using Random = System.Random;
 
@@ -23,6 +24,17 @@ public class GameManager : MonoBehaviour
             PhotonNetwork.Instantiate("Player", spawnpoints[1].position, spawnpoints[1].rotation);
         
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            foreach (GameObject porte in GameObject.FindGameObjectsWithTag("porte"))
+            {
+                porte.SetActive(false);
+            }
+        }
     }
 
     public void OuvrirGrille()
