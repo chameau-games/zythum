@@ -1,9 +1,11 @@
-﻿using Menu;
+﻿using System.Collections;
+using Menu;
 using Photon.Pun;
 using Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Random = System.Random;
 
 public class Code : MonoBehaviourPun
@@ -47,7 +49,7 @@ public class Code : MonoBehaviourPun
     {
        
         if (!isLocked) return;
-        if (input == codes[idRoom])
+        if (input == codes[idRoom] && (gameObject.name != "Digicode - sortie" || GameObject.Find("carte") == null))
         {
             isLocked = false;
             
@@ -59,12 +61,35 @@ public class Code : MonoBehaviourPun
             playerMov.enabled = true;
             
             photonView.RPC("OpenDoor", RpcTarget.All, gameObject.name);
+
+            if (gameObject.name == "Digicode - sortie")
+            {
+                photonView.RPC("MasterLaunchEnd", RpcTarget.All, gameObject.name);
+            }
         }
         else
         {
             input = "";
             code.text = input;
         }
+    }
+
+    [PunRPC]
+    void MasterLaunchEnd(string gameobjectname)
+    {
+        if (PhotonNetwork.IsMasterClient && gameobjectname == gameObject.name)
+        {
+            StartCoroutine(wait2SecondsAndWin());
+        }
+    }
+
+    IEnumerator wait2SecondsAndWin()
+    {
+        Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
+        prop.Add("hasWin", true);
+        PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
+        yield return new WaitForSeconds(3);
+        PhotonNetwork.LoadLevel("Gameover");
     }
 
     [PunRPC]

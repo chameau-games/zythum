@@ -1,9 +1,12 @@
-﻿using Photon.Pun;
+﻿using System.Collections;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Menu
 {
-    public class EndMenu : MonoBehaviour
+    public class EndMenu : MonoBehaviourPunCallbacks
     {
     
         public Camera winCamera;
@@ -28,6 +31,19 @@ namespace Menu
                 gameoverCamera.gameObject.SetActive(false);
                 winCamera.gameObject.SetActive(true);
             }
+
+            StartCoroutine(backtomenu());
+        }
+
+        IEnumerator backtomenu()
+        {
+            yield return new WaitForSeconds(5);
+            PhotonNetwork.Disconnect();
+        }
+
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
