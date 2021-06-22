@@ -19,6 +19,8 @@ namespace Player
         private Transform electricalPanel;
         private Transform hudMissionManual;
 
+        private Transform card;
+
         private Transform carte;
         private GameManager gameManager;
 
@@ -38,6 +40,7 @@ namespace Player
             aerationVent = GameObject.Find("aerationVent").transform;
             hudMissionManual = GameObject.Find("MissionManual").transform;
             playerCamera = GameObject.FindGameObjectWithTag("PlayerCam");
+            card = GameObject.Find("carte").transform;
         }
             
 
@@ -149,7 +152,7 @@ namespace Player
                     }
                 }
                 
-                if (PhotonNetwork.IsMasterClient && hit.transform == hudMissionManual)
+                else if (PhotonNetwork.IsMasterClient && hit.transform == hudMissionManual)
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
@@ -165,6 +168,19 @@ namespace Player
                     else
                     {
                         hud.SetInformationText("Appuie sur E pour consulter le manuel des missions");
+                        hud.ShowText();
+                    }
+                }
+                
+                else if (hit.transform == card)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        card.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        hud.SetInformationText("Appuie sur E pour récupérer la carte");
                         hud.ShowText();
                     }
                 }
