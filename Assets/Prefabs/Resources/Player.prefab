@@ -296,6 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c519d385b2587b146a88fec99c8ac4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCamera: {fileID: 2513864151995955090}
+  playerMovement: {fileID: 122154463739907262}
   maxReach: 2
   playerMovement: {fileID: 122154463739907262}
 --- !u!114 &5856365243983030539
