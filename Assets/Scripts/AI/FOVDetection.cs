@@ -1,6 +1,8 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 
 namespace AI
 {
@@ -16,7 +18,7 @@ namespace AI
         // Start is called before the first frame update
         void Start()
         {
-            layermask = 1 << 11;
+            layermask =1<< 11;
             layermask = ~layermask;
             if (!PhotonNetwork.IsMasterClient)
             {
@@ -36,10 +38,6 @@ namespace AI
                 if (checkingFOV(player.transform, maxAngle, maxRadius))
                 {
                     target = player.transform;
-                }
-                else
-                {
-                    target = null;
                 }
             }
         }
@@ -70,25 +68,25 @@ namespace AI
         }*/
         private bool checkingFOV(Transform target, float maxAngle, float maxRadius)
         {
-            if (Physics.CheckSphere(transform.position,maxRadius,map))
+            Collider[] cols = Physics.OverlapSphere(transform.position, maxRadius, layermask);
+            foreach (Collider col in cols)
             {
-                Vector3 targetDir = target.position - transform.position;
-                float angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
-                if (angleToPlayer >= maxAngle * (-1) && angleToPlayer <= maxAngle)
+                if (col.transform == target)
                 {
                     RaycastHit hit;
-                    if (Physics.Raycast(transform.position, target.position, out hit,
-                        Vector3.Distance(transform.position, target.position), layermask))
+                    Vector3 pos = new Vector3(transform.position.x, (float)1.5, transform.position.z);
+                    Vector3 targ = new Vector3(target.position.x, 1, target.position.z);
+                    if (Physics.Raycast(pos, targ, out hit,maxRadius, layermask))
                     {
-                        if (hit.collider.transform == target.transform)
+                        if (hit.collider.transform == target)
                         {
                             return true;
                         }
                     }
                 }
             }
-
             return false;
         }
     }
+    
 }

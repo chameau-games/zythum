@@ -12,6 +12,7 @@ namespace AI
         public Transform[] points;
 
         private FOVDetection _fovd;
+        public AudioSource audio;
         public NavMeshAgent guard;
         private Transform _nextPosition;
         private Animator _animator;
@@ -34,7 +35,6 @@ namespace AI
         {
             if(_fovd.GetTarget() == null)
             {
-                _animator.SetBool("iswalking",true);
                 Patrol();
             }
             else
@@ -45,25 +45,23 @@ namespace AI
         }
 
         private void ChasePlayer(Transform target)
+        {
+            guard.speed =3;
+            _animator.SetBool("iswalking",true);
+            guard.SetDestination(target.position);
+            if (Vector3.Distance(transform.position, target.position) < 1f)
             {
-                _animator.SetBool("iswalking",true);
-                guard.SetDestination(target.position);
-                transform.LookAt(target.position);
-                if (Vector3.Distance(transform.position, target.position) < 1f)
-                {
-                    _animator.SetBool("iswalking",false);
-                    Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
-                    prop.Add("hasWin", false);
-                    PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
-                    PhotonNetwork.LoadLevel("Gameover");
-                    }
+                Hashtable prop = PhotonNetwork.CurrentRoom.CustomProperties;
+                prop.Add("hasWin", false);
+                PhotonNetwork.CurrentRoom.SetCustomProperties(prop);
+                PhotonNetwork.LoadLevel("Gameover");
             }
+        }
 
         void Patrol()
         {
+            _animator.SetBool("iswalking",true);
             guard.SetDestination(_nextPosition.position);
-            transform.LookAt(transform.forward);
-            
             if (Vector3.Distance(transform.position, _nextPosition.position) <= 1f)
             {
                 setnextposition();
